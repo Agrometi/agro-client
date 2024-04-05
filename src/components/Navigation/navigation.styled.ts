@@ -211,10 +211,12 @@ export const NavSocials = styled.div`
   }
 
   @media screen and (${({ theme }) => theme.breakpoints.tablet_sm}) {
+    .socials-list li div,
     .socials-list li a {
       gap: 1rem;
     }
 
+    .socials-list li div span svg,
     .socials-list li a span svg {
       font-size: ${({ theme }) => theme.fontSize.md};
     }
@@ -227,11 +229,12 @@ export const NavSocials = styled.div`
       gap: 1rem 0.5rem;
     }
 
+    .socials-list li div,
     .socials-list li a {
-      gap: 0.5rem;
       font-size: ${({ theme }) => theme.fontSize.xs};
     }
 
+    .socials-list li div span svg,
     .socials-list li a span svg {
       font-size: ${({ theme }) => theme.fontSize.base};
     }

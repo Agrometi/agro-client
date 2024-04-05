@@ -88,7 +88,7 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
               <span>{data.category.title}</span>
             </div>
 
-            <p className="details-price">150₾</p>
+            <p className="details-price">{data.price}₾</p>
 
             <p className="details-description">{data.description}</p>
 

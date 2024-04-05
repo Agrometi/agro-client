@@ -17,4 +17,15 @@ export const Footer = styled.footer`
     display: flex;
     gap: 1.5rem;
   }
+
+  @media screen and (${({ theme }) => theme.breakpoints.mobile_lg}) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    p {
+      order: 2;
+      font-size: ${({ theme }) => theme.fontSize.xs};
+    }
+  }
 `;
