@@ -14,7 +14,7 @@ const RelatedProducts: React.FC<RelatedProductsT> = ({
 }) => {
   const { data, status } = useGetRelatedProductsQuery(productId, categoryId);
 
-  return (
+  return data.length > 0 ? (
     <Styled.RelatedProducts>
       <p>მსგავსი პროდუქცია</p>
 
@@ -30,6 +30,8 @@ const RelatedProducts: React.FC<RelatedProductsT> = ({
 
       {status.error && <ErrorMessage message={status.message} />}
     </Styled.RelatedProducts>
+  ) : (
+    <></>
   );
 };
 

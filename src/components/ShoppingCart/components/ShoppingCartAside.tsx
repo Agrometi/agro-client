@@ -21,7 +21,8 @@ const ShoppingCartAside: React.FC<ShoppingCartAsideT> = () => {
   const products = shoppingCartStore.use.products();
 
   const priceSum = products.reduce(
-    (acc, product) => (acc += product.price * product.size.selectedCount),
+    (acc, product) =>
+      (acc += product.price * product.size.size * product.size.selectedCount),
     0
   );
 
