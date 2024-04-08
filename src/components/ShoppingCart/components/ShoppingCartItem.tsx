@@ -77,11 +77,21 @@ const ShoppingCartItem: React.FC<ShoppingCartItemT> = ({ product }) => {
       </div>
 
       <div className="product-price">
-        <p>{product.price}₾</p>
+        {/* <p>{product.price}₾</p> */}
+        <p>
+          1&nbsp;{product.sizeUnit}
+          &nbsp;&mdash;&nbsp;{product.price}₾
+        </p>
       </div>
 
       <div className={`product-size ${!isProductType ? "is-unavailable" : ""}`}>
-        {!isProductType ? <CloseIcon /> : <p>{product.size.size}</p>}
+        {!isProductType ? (
+          <CloseIcon />
+        ) : (
+          <p>
+            {product.size.size}&nbsp;{product.sizeUnit}
+          </p>
+        )}
       </div>
 
       <div className="product-counter">
@@ -100,6 +110,10 @@ const ShoppingCartItem: React.FC<ShoppingCartItemT> = ({ product }) => {
             onProductQuantityChange(count);
           }}
         />
+      </div>
+
+      <div className="total-price">
+        {size.size * product.price * size.selectedCount}₾
       </div>
     </li>
   );

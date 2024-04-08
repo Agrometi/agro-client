@@ -16,10 +16,10 @@ import {
 } from "@/components/Layouts";
 
 import {
-  OpenInNewIcon,
-  ShoppingCartIcon,
   EditIcon,
   DeleteIcon,
+  OpenInNewIcon,
+  ShoppingCartIcon,
 } from "@/components/Layouts/Icons";
 
 import ComboSlider from "./ComboSlider";
@@ -78,8 +78,9 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
 
   const onAddToCart = () =>
     onAdd({
-      size: "",
       quantity,
+      size: NaN,
+      sizeUnit: "",
       product: data,
       productType: "combo",
     });

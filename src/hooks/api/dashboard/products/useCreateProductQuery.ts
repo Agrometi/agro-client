@@ -76,7 +76,8 @@ export default function useCreateProductQuery() {
       assets: product.assets,
       price: product.price.toString(),
       description: product.description,
-      sizes: product.sizes.map((size) => ({ size })),
+      sizeUnit: { title: product.sizeUnit, value: product.sizeUnit },
+      sizes: product.sizes.map((size) => ({ size: size.toString() || "" })),
       category: { title: product.category.title, value: product.category._id },
     });
 
@@ -95,6 +96,7 @@ export default function useCreateProductQuery() {
       assets: [],
       description: "",
       assets_to_delete: [],
+      sizeUnit: { title: "", value: "" },
       sizes: [{ size: "" }],
       category: { title: "", value: "" },
     });

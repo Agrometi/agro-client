@@ -49,7 +49,9 @@ const ChosenItemCard: React.FC<ChosenItemCardT> = ({ product, className }) => {
     });
 
   const reviewedProductId = getParam("product");
-  const reviewedProductSize = getParam("product-size");
+  const reviewedProductSize = getParam("product-size")
+    ? Number(getParam("product-size"))
+    : NaN;
 
   const onRemoveProduct = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -67,7 +69,7 @@ const ChosenItemCard: React.FC<ChosenItemCardT> = ({ product, className }) => {
   const onItemReview = () =>
     setMultipleParams([
       { key: "product", value: product._id },
-      { key: "product-size", value: product.size.size },
+      { key: "product-size", value: product.size.size.toString() },
     ]);
 
   return (

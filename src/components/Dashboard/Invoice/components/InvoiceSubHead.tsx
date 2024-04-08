@@ -20,14 +20,22 @@ const InvoiceSubHead: React.FC<InvoiceSubHeadT> = ({
         <Text style={{ ...styles.noto, ...styles.fontSizeSm, ...styles.bold }}>
           კომაპანია:
         </Text>
-        <Text style={{ ...styles.fontSizeSm, ...styles.normal }}>
-          AGRO-ORNAMENT
+        <Text
+          style={{ ...styles.fontSizeSm, ...styles.normal, ...styles.noto }}
+        >
+          შპს აგრო-ორნამენტი
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          ქ.ქუთაისი შარტავას 2/10 ზიპ - 4600
+          ქ.ქუთაისი ჟ.შარტავას 10 ს/კ 238775919
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          +995 555-14-57-19
+          ტელ:&nbsp;+995 555-14-57-19
+        </Text>
+        <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
+          თიბისი ბანკი:&nbsp;GE42TB7162036050100002
+        </Text>
+        <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
+          ელ-ფოსტა:&nbsp;agroornament@gmail.com
         </Text>
       </View>
 

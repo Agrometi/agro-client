@@ -19,8 +19,9 @@ const ProductCard: React.FC<ProductCardT> = ({ product }) => {
     onAdd({
       product,
       quantity: 1,
-      size: product.sizes[0],
       productType: "product",
+      size: product.sizes[0],
+      sizeUnit: product.sizeUnit,
     });
 
   return (
@@ -54,12 +55,17 @@ const ProductCard: React.FC<ProductCardT> = ({ product }) => {
           </Link>
 
           <div className="card-price--size">
-            <span className="card-price">{product.price}₾</span>
+            <span className="card-price">
+              1&nbsp;{product.sizeUnit}&nbsp;&mdash;&nbsp;{product.price}₾
+            </span>
 
             <span className="card-size">
               <span>ზომა:</span>
               &nbsp;
-              <span>{product.sizes[0]}</span>
+              <span>
+                {product.sizes[0]}
+                {product.sizeUnit}
+              </span>
             </span>
           </div>
         </div>

@@ -65,6 +65,7 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
   const onAddToCart = () =>
     onAdd({
       product: data,
+      sizeUnit: data.sizeUnit,
       size: size.size,
       productType: "product",
       quantity: size.selectedCount,
@@ -88,7 +89,14 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
               <span>{data.category.title}</span>
             </div>
 
-            <p className="details-price">{data.price}₾</p>
+            <p className="details-price">
+              <span>ფასი:</span>
+              &nbsp;
+              <span>
+                1&nbsp;{data.sizeUnit}
+                &nbsp;&mdash;&nbsp;{data.price}₾
+              </span>
+            </p>
 
             <p className="details-description">{data.description}</p>
 
@@ -99,7 +107,7 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
                 <select name="size" onChange={onSizeChange}>
                   {data.sizes.map((size) => (
                     <option value={size} key={size}>
-                      {size}
+                      {size}&nbsp;{data.sizeUnit}
                     </option>
                   ))}
                 </select>
@@ -128,6 +136,10 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
                       onDecreaseCount={onDecreaseQuantity}
                       onIncreaseCount={onIncreaseQuantity}
                     />
+                  </div>
+
+                  <div className="details-actions__total-price">
+                    {size.size * data.price * size.selectedCount}₾
                   </div>
 
                   <Button

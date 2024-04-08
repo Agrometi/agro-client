@@ -31,6 +31,7 @@ type GroupedOrdersListedOrderProductT = {
   title: string;
   price: number;
   assets: Array<string>;
+  description: string;
 };
 
 type GroupedOrdersIdT = { month: number; year: number };

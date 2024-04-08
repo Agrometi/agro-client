@@ -34,6 +34,8 @@ const ItemsList: React.FC<ItemsListT> = () => {
             </div>
 
             <div>რაოდენობა</div>
+
+            <div>ჯამური ფასი</div>
           </div>
 
           <ul className="products-list">

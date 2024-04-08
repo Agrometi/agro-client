@@ -8,17 +8,18 @@ type CartProductT = {
   title: string;
   thumbnail: string;
   productType: "combo" | "product";
-  size: { size: string; selectedCount: number };
+  sizeUnit: string;
+  size: { size: number; selectedCount: number };
 };
 
 type RemoveProductParamsT = {
-  size: string;
+  size: number;
   productId: string;
   productType: "combo" | "product";
 };
 
 type SetProductQuantityParamsT = {
-  size: string;
+  size: number;
   quantity: number;
   productId: string;
   productType: "combo" | "product";

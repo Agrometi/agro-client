@@ -30,6 +30,7 @@ const initialState: ProductStateT = {
     },
     assets: [],
     price: NaN,
+    sizeUnit: "",
     sizes: [],
   },
 
@@ -69,9 +70,11 @@ const useProductStore = create<ProductStoreT>()(
           const requestBody = {
             ...data,
             assets: [],
+            price: +data.price,
             new_assets: data.assets,
             category: data.category.value,
-            sizes: data.sizes.map((s) => s.size),
+            sizeUnit: data.sizeUnit.title,
+            sizes: data.sizes.map((s) => +s.size),
           };
 
           await axiosPrivateFormDataQuery.post("/products", requestBody);
@@ -93,6 +96,7 @@ const useProductStore = create<ProductStoreT>()(
             price: data.price,
             description: data.description,
             category: data.category.value,
+            sizeUnit: data.sizeUnit.title,
             sizes: data.sizes.map((s) => s.size),
             assets_to_delete: data.assets_to_delete,
             assets: data.assets.filter((asset) => typeof asset === "string"),

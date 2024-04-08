@@ -96,10 +96,11 @@ export const ProductSlider = styled.div`
 
     .react-multi-carousel-list {
       width: 95vw;
+      height: 8rem;
 
       .slider-thumbnail__fig {
-        width: 7rem;
-        height: 7rem;
+        width: 6.5rem;
+        height: 6.5rem;
       }
     }
   }

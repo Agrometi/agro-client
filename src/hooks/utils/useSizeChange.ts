@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import { SelectedProductSizeT } from "@/interface/store/combo.store.types";
 
 export default function useSizeChange(
-  sizes: Array<string>,
+  sizes: Array<number>,
   setDefaults = true
 ) {
   /* Set Size locally before current product will be added to store */
   const [size, setSize] = useState<SelectedProductSizeT>({
-    size: "",
+    size: NaN,
     selectedCount: 0,
   });
 
   /** Watch Size change and reset size state based on change*/
   const onSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const chosenSize = sizes.find((size) => size === e.target.value);
+    const chosenSize = sizes.find((size) => size === +e.target.value);
 
     if (!chosenSize) return;
 

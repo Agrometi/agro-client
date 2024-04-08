@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { scrollbar } from "@/styles/utils";
 
 export const OrderReview = styled.div`
   flex: 1;
@@ -157,32 +156,5 @@ export const OrderReview = styled.div`
     display: flex;
     gap: 3rem;
     justify-content: flex-end;
-  }
-`;
-
-export const DescriptionNoteWindow = styled.div`
-  padding: 1rem;
-
-  .description-window__wrapper {
-    ${scrollbar};
-    overflow-y: auto;
-    width: 25vw;
-    height: 60vh;
-    padding-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .description-window__products-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
   }
 `;

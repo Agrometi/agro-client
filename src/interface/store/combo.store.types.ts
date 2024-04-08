@@ -55,21 +55,21 @@ type ComboActionsT = {
 
   addProduct: (product: SelectedProductT) => void;
 
-  removeProduct: (params: { productId: string; size: string }) => void;
+  removeProduct: (params: { productId: string; size: number }) => void;
 
   decreaseAddedProductCount: (params: {
     productId: string;
-    size: string;
+    size: number;
   }) => void;
 
   increaseAddedProductCount: (params: {
     productId: string;
-    size: string;
+    size: number;
   }) => void;
 
   changeAddedProductCount: (params: {
     productId: string;
-    size: string;
+    size: number;
     count: number;
   }) => void;
 
@@ -86,7 +86,7 @@ type SelectedProductT = Omit<ProductT, "sizes"> & {
   size: SelectedProductSizeT;
 };
 
-type SelectedProductSizeT = { size: string; selectedCount: number };
+type SelectedProductSizeT = { size: number; selectedCount: number };
 
 type ComboStoreT = ComboStateT & ComboActionsT;
 
