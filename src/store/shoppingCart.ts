@@ -94,7 +94,7 @@ const getCandidateProductIndex = (params: {
   get: () => ShoppingCartStoreT;
   productType: "combo" | "product";
   candidateProductId: string;
-  candidateProductSize: string;
+  candidateProductSize: number;
 }): number => {
   const currentProducts = params.get().products;
 

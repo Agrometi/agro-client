@@ -27,7 +27,7 @@ const ItemToChooseCard: React.FC<ItemToChooseCardT> = ({ product }) => {
 
   /** Watch Size change and reset size state based on change*/
   const onSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const chosenSize = product.sizes.find((size) => size === e.target.value);
+    const chosenSize = product.sizes.find((size) => size === +e.target.value);
 
     if (!chosenSize) return;
 
@@ -164,7 +164,7 @@ const ItemToChooseCard: React.FC<ItemToChooseCardT> = ({ product }) => {
             onClick={onAddProduct}
             className="add-btn"
             disabled={size.selectedCount === 0}
-            show={size.selectedCount === 0 ? "danger": "primary" }
+            show={size.selectedCount === 0 ? "danger" : "primary"}
           >
             ADD
           </Button>

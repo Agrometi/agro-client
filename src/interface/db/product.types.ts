@@ -4,7 +4,8 @@ type ProductT = {
   _id: string;
   title: string;
   description: string;
-  sizes: Array<string>;
+  sizeUnit: string;
+  sizes: Array<number>;
   price: number;
   assets: Array<string>;
   category: CategoryT;

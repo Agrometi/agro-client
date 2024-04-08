@@ -41,6 +41,10 @@ export const ProductDetails = styled.div`
     &-price {
       font-weight: 500;
       font-size: ${({ theme }) => theme.fontSize.md};
+
+      span:first-child {
+        color: ${({ theme }) => theme.colors.gray_shade};
+      }
     }
 
     &-description {
@@ -95,10 +99,10 @@ export const ProductDetails = styled.div`
 
       &-actions {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
 
         &__add-btn {
-          grid-column: span 2;
+          grid-column: span 3;
           width: 100%;
         }
       }
@@ -120,7 +124,28 @@ export const ProductDetails = styled.div`
       }
 
       &-actions {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: start;
         gap: 1.5rem;
+
+        &__size {
+          grid-row: 1;
+          grid-column: 1;
+        }
+
+        &__total-price {
+          grid-row: 1;
+          grid-column: 2;
+        }
+
+        &__quantity {
+          grid-row: 2;
+          grid-column: span 2;
+        }
+
+        &__add-btn {
+          grid-column: span 2;
+        }
       }
     }
   }
@@ -153,17 +178,6 @@ export const ProductDetails = styled.div`
       &-price {
         grid-row: 2;
         grid-column: 3;
-        background-color: ${({ theme }) => theme.colors.green};
-        color: ${({ theme }) => theme.colors.white};
-        min-width: 5rem;
-        min-height: 5rem;
-        aspect-ratio: 1/1;
-        border-radius: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.5rem;
-        font-size: ${({ theme }) => theme.fontSize.sm};
       }
 
       &-description {
@@ -176,22 +190,14 @@ export const ProductDetails = styled.div`
         grid-row: 4;
         grid-column: 1/-1;
         width: 100%;
-        grid-template-columns: 1fr repeat(2, max-content) 1fr;
         column-gap: 3rem;
         row-gap: 2rem;
         justify-items: center;
 
-        &__size {
-          grid-column: 2;
-        }
-
         &__quantity {
-          grid-column: 3;
-        }
-
-        &__add-btn {
-          grid-row: 2;
-          grid-column: 1/-1;
+          width: 100%;
+          display: flex;
+          justify-content: center;
         }
       }
     }
@@ -204,30 +210,35 @@ export const ProductDetails = styled.div`
 
     .details {
       row-gap: 1.5rem;
-      grid-template-columns: repeat(2, 1fr);
-      justify-content: space-between;
-      justify-items: auto;
+      grid-template-columns: repeat(2, 1fr) !important;
+      justify-items: flex-start;
 
-      &-category,
-      &-price {
-        grid-column: auto;
+      &-title {
+        width: 100%;
+        grid-row: 1;
+        grid-column: span 2;
       }
 
       &-category {
-        justify-self: start;
-      }
-
-      &-price {
-        justify-self: end;
+        grid-row: 2;
+        grid-column: span 2;
       }
 
       &-description {
         text-align: start;
+        grid-row: 3;
+        grid-column: span 2;
+      }
+
+      &-price {
+        grid-row: 4;
+        grid-column: span 2;
       }
 
       &-actions {
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: start;
+        grid-row: 5;
+        grid-column: span 2;
+        justify-items: flex-start;
 
         &__size,
         &__quantity {

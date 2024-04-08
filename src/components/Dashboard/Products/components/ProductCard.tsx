@@ -59,7 +59,10 @@ const ProductCard: React.FC<ProductCardT> = ({ product, onDelete }) => {
           <div className="flex-box__sub">
             <span>ფასი:</span>
             &nbsp;
-            <span>${product.price.toFixed(2).toLocaleString()}</span>
+            <span>
+              1 {product.sizeUnit} &mdash;{" "}
+              {product.price.toFixed(2).toLocaleString()}₾
+            </span>
           </div>
 
           {/* <div className="flex-box__sub">

@@ -439,7 +439,7 @@ export default createSelectors(useProductStore);
 function findAddedProductIndex(params: {
   data: Array<SelectedProductT>;
   productId: string;
-  size: string;
+  size: number;
 }): number {
   const candidateProductIndex = params.data.findIndex(
     (product) =>

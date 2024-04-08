@@ -7,7 +7,8 @@ import { ComboT } from "@/interface/db/combo.types";
 import { ProductT } from "@/interface/db/product.types";
 
 type OnAddProductArgsT = {
-  size: string;
+  size: number;
+  sizeUnit: string;
   quantity: number;
   productType: "combo" | "product";
   product: ProductT | Partial<ComboT>;
@@ -19,18 +20,17 @@ export default function useCart() {
   const setQuantity = shoppingCartStore.use.setQuantity();
 
   const onAdd = ({ product, ...params }: OnAddProductArgsT) => {
-    const selectedSize: { size: string; selectedCount: number } =
+    const selectedSize: { size: number; selectedCount: number } =
       params.productType === "product"
         ? {
             selectedCount: params.quantity,
-            size: (product as ProductT).sizes.find(
-              (s: string) => s === params.size
-            )!,
+            size: (product as ProductT).sizes.find((s) => s === params.size)!,
           }
-        : { selectedCount: params.quantity, size: "" };
+        : { selectedCount: params.quantity, size: NaN };
 
     add({
       _id: product._id!,
+      sizeUnit: params.sizeUnit,
       size: selectedSize,
       title: product.title!,
       price: product.price!,

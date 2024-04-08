@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const ItemsLists = styled.div`
-  flex: 1;
+  width: 100%;
 
   .products-list__head {
     display: grid;
-    grid-template-columns: 3rem 12rem repeat(5, 1fr);
+    grid-template-columns: 3rem 12rem repeat(6, 1fr);
     column-gap: 1.5rem;
     font-weight: 600;
     margin-bottom: 3.5rem;
@@ -29,7 +29,7 @@ export const ItemsLists = styled.div`
 
     li {
       display: grid;
-      grid-template-columns: 3rem 12rem repeat(5, 1fr);
+      grid-template-columns: 3rem 12rem repeat(6, 1fr);
       column-gap: 1.5rem;
       height: 9rem;
       border: 1px solid;
@@ -43,6 +43,10 @@ export const ItemsLists = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+      .product-price {
+        font-size: ${({ theme }) => theme.fontSize.sm};
       }
 
       .is-available,
@@ -122,8 +126,12 @@ export const ItemsLists = styled.div`
     .products-list li {
       height: auto;
       position: relative;
-      grid-template-rows: 2;
-      grid-template-columns: 12rem repeat(3, max-content);
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 1rem;
+
+      div {
+        justify-content: flex-start;
+      }
 
       .remove-btn {
         position: absolute;
@@ -133,30 +141,37 @@ export const ItemsLists = styled.div`
       }
 
       .product-fig {
-        grid-row: span 2;
-        grid-column: 1;
-        height: 12rem;
+        display: none;
       }
 
       .product-title {
-        grid-column: 2/4;
         grid-row: 1;
+        grid-column: 1/-1;
         width: 100%;
+
+        [data-line-clamp] {
+          text-align: left !important;
+        }
       }
 
       .product-price {
-        grid-column: 2;
         grid-row: 2;
+        grid-column: 1;
+      }
+
+      .total-price {
+        grid-row: 2;
+        grid-column: 2;
       }
 
       .product-size {
-        grid-row: 2;
-        grid-column: 3;
+        grid-row: 3;
+        grid-column: 1;
       }
 
       .product-counter {
-        grid-column: 4;
-        grid-row: 2;
+        grid-row: 3;
+        grid-column: 2;
       }
 
       .is-available,

@@ -19,7 +19,9 @@ const ComboActiveItem: React.FC<ComboActiveItemT> = memo(() => {
   );
 
   const reviewedProductId = getParam("product");
-  const reviewedProductSize = getParam("product-size");
+  const reviewedProductSize = getParam("product-size")
+    ? Number(getParam("product-size"))
+    : NaN;
 
   useEffect(() => {
     if ((!reviewedProductId || !reviewedProductSize) && product)

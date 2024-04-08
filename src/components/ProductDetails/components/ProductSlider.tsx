@@ -16,6 +16,11 @@ const responsive = {
     breakpoint: { max: 4000, min: 0 },
     items: 4,
   },
+
+  mobile: {
+    breakpoint: { max: 4000, min: 600 },
+    items: 3,
+  },
 };
 
 const ProductSlider: React.FC<ProductSliderT> = ({ assets }) => {

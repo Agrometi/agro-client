@@ -14,6 +14,14 @@ import { Button, StandSpinner, ErrorMessage } from "@/components/Layouts";
 
 import { ProductT } from "@/interface/db/product.types";
 
+const sizeUnits = [
+  { title: "კვ∕მ", value: "კვ/მ" },
+  { title: "მმ", value: "მმ" },
+  { title: "სმ", value: "სმ" },
+  { title: "კომპლექტი", value: "კომპლექტი" },
+  { title: "ცალი", value: "ცალი" },
+];
+
 const AddProduct: React.FC = () => {
   const { state } = useLocation();
   const { getParam } = useSearchParams();
@@ -99,6 +107,20 @@ const AddProduct: React.FC = () => {
           )}
         />
 
+        <Controller
+          name="sizeUnit"
+          control={form.form.control}
+          render={({ field }) => (
+            <Form.SelectField
+              label="ზომის ერთეული"
+              value={field.value}
+              placeholder="მიუთითე ზომის ერთეული"
+              options={sizeUnits}
+              onSelect={(v) => field.onChange(v)}
+            />
+          )}
+        />
+
         {form.sizesField.fields.map((sizeField, index) => (
           <div
             key={sizeField.id}
@@ -109,6 +131,7 @@ const AddProduct: React.FC = () => {
               control={form.form.control}
               render={({ field, fieldState: { error } }) => (
                 <Form.TextField
+                  type="number"
                   fieldProps={field}
                   message={error?.message || ""}
                   hasError={error ? true : false}

@@ -12,7 +12,21 @@ const ProductSchema = z.object({
     title: z.string(),
     value: z.string(),
   }),
-  sizes: z.array(z.object({ size: z.string().trim().min(1) })).min(1),
+  sizeUnit: z.object({
+    title: z.string(),
+    value: z.string(),
+  }),
+  sizes: z
+    .array(
+      z.object({
+        size: z
+          .string()
+          .trim()
+          .min(1)
+          .refine(isNumeric.validator, isNumeric.message),
+      })
+    )
+    .min(1),
   assets: z.array(z.any()),
   assets_to_delete: z.array(z.string()),
 });
@@ -27,6 +41,7 @@ const useProductForm = () =>
       description: "",
       price: "",
       category: { title: "", value: "" },
+      sizeUnit: { title: "", value: "" },
       sizes: [{ size: "" }],
       assets: [],
       assets_to_delete: [],

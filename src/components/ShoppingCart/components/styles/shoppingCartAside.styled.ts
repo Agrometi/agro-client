@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ShoppingCartAside = styled.aside`
-  width: 30rem;
-  position: sticky;
-  top: 10rem;
+  width: 100%;
+  /* position: sticky; */
+  /* top: 10rem; */
   padding: 3.5rem;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 1rem;

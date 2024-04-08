@@ -22,15 +22,16 @@ export const ShoppingCart = styled.div`
     width: min(128rem, 100%);
     padding: 2rem 1rem;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
   }
 
-  @media screen and (${({ theme }) => theme.breakpoints.tablet}) {
+  /* @media screen and (${({ theme }) => theme.breakpoints.tablet}) {
     .shopping-cart__body {
       flex-direction: column;
     }
-  }
+  } */
 `;
 
 export const ShoppingCartSuccess = styled.div`
