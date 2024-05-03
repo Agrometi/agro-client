@@ -7,11 +7,11 @@ import {
 import { PATHS } from "@/config/paths";
 import { getTimeString } from "@/utils";
 import { useSearchParams } from "@/hooks/utils";
+import getOrderedProductNestedField from "./functions/getOrderedProductNestedField";
 
 import * as Styled from "./styles/orderReview.styled";
+import OrderReviewTableItem from "./OrderReviewTableItem";
 import { Spinner, ErrorMessage, Button } from "@/components/Layouts";
-
-import { GroupedOrdersListedOrderCommonProductT } from "@/interface/db/order.types";
 
 const OrderReview: React.FC = () => {
   const navigate = useNavigate();
@@ -24,27 +24,49 @@ const OrderReview: React.FC = () => {
   const { status, data } = useGetOrderQuery();
   const { onTreeTrunk, status: treeTrunkStatus } = useTreeTrunkOrderQuery();
 
-  const getNestedField = (
-    product: GroupedOrdersListedOrderCommonProductT,
-    key: string
-  ) => {
-    const isProductType = product.productType === "PRODUCT";
-    const nestedProduct = isProductType ? product.product : product.combo;
-    return nestedProduct[key as keyof typeof nestedProduct];
-  };
-
   const onGetInvoice = async () => {
     await onTreeTrunk(data._id, "SUCCESS");
 
-    const products = data.products.map((product) => ({
-      id: product._id,
-      size: product.size,
-      quantity: product.quantity,
-      title: getNestedField(product, "title") as string,
-      price: getNestedField(product, "price") as number,
-      description: (getNestedField(product, "description") as string) || "",
-      thumbnail: (getNestedField(product, "assets") as Array<string>)[0],
-    }));
+    const products = data.products
+      .filter(
+        (product) =>
+          (product.productType === "COMBO" && product.combo) ||
+          (product.productType === "PRODUCT" && product.product)
+      )
+      .map((product) => {
+        const price = getOrderedProductNestedField(product, "price") as number;
+
+        const title = getOrderedProductNestedField(product, "title") as string;
+
+        const assets = getOrderedProductNestedField(
+          product,
+          "assets"
+        ) as Array<string>;
+
+        const description = getOrderedProductNestedField(
+          product,
+          "description"
+        ) as string;
+
+        const priceSum =
+          product.productType === "PRODUCT"
+            ? product.quantity * price * Number(product.size as string)
+            : product.quantity * price;
+
+        const thumbnail = assets?.[0];
+
+        return {
+          id: product._id,
+          size: product.size,
+          sizeUnit: product.sizeUnit,
+          quantity: product.quantity,
+          title,
+          price,
+          priceSum,
+          description,
+          thumbnail,
+        };
+      });
 
     navigate(PATHS.dashboard_generate_invoice_page, {
       state: {
@@ -89,12 +111,6 @@ const OrderReview: React.FC = () => {
                   </figure>
 
                   <div className="invoice-info">
-                    {/* <p>
-                      <span>ინვოისის ნომერი:</span>
-                      &nbsp;
-                      <span>1</span>
-                    </p> */}
-
                     <p>
                       <span>შეკვეთის თარიღი:</span>
                       &nbsp;
@@ -139,16 +155,7 @@ const OrderReview: React.FC = () => {
                 </div>
 
                 {data.products.map((product) => (
-                  <div className="invoice-body__grid-col" key={product._id}>
-                    <p>{getNestedField(product, "title")}</p>
-                    <p>{product.size}</p>
-                    <p>{product.quantity}</p>
-                    <p>{getNestedField(product, "price")}</p>
-                    <p>
-                      {product.quantity *
-                        (getNestedField(product, "price") as number)}
-                    </p>
-                  </div>
+                  <OrderReviewTableItem key={product._id} product={product} />
                 ))}
               </div>
 

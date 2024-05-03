@@ -35,6 +35,30 @@ const Routes: Array<RouteT> = [
     children: [],
   },
 
+  // ========== BLOG ==========
+  {
+    path: PATHS.blog_page,
+    title: "blog-page",
+    element: <Pages.BlogPage />,
+    children: [],
+  },
+
+  // ========== OUR_PROJECTS ==========
+  {
+    path: PATHS.our_projects_page,
+    title: "our-projects-page",
+    element: <Pages.OurProjectsPage />,
+    children: [],
+  },
+
+  // ========== ARTICLE ==========
+  {
+    path: PATHS.article_page,
+    title: "article-page",
+    element: <Pages.ArticlePage />,
+    children: [],
+  },
+
   // ========== SHOP -  ALL PRODUCTS AND ALL COMBOS ROOT ==========
   {
     path: PATHS.shopping_page,
@@ -180,6 +204,33 @@ const Routes: Array<RouteT> = [
         ],
       },
 
+      // ========== BLOG ==========
+      {
+        path: PATHS.dashboard_blog_page,
+        title: "dashboard-blog-page",
+        element: <Pages.DashboardBlogPage />,
+        children: [
+          {
+            path: PATHS.dashboard_create_article_page,
+            title: "dashboard-create-article-page",
+            element: <Pages.DashboardCreateArticlePage />,
+            children: [],
+          },
+          {
+            path: PATHS.dashboard_blog_articles_page,
+            title: "dashboard-blog-articles-page",
+            element: <Pages.DashboardArticlesPage />,
+            children: [],
+          },
+          {
+            path: PATHS.dashboard_article_page,
+            title: "dashboard-article-page",
+            element: <Pages.DashboardArticlePage />,
+            children: [],
+          },
+        ],
+      },
+
       // ========== ORDERS ==========
       {
         path: PATHS.dashboard_orders_page,
@@ -192,6 +243,21 @@ const Routes: Array<RouteT> = [
         path: PATHS.dashboard_generate_invoice_page,
         title: "dashboard-generate-invoice-page",
         element: <Pages.GenerateInvoicePage />,
+        children: [],
+      },
+
+      // ========== ABOUT_US ==========
+      {
+        path: PATHS.dashboard_about_us_page,
+        title: "dashboard-about-us-page",
+        element: <Pages.DashboardAboutUsPage />,
+        children: [],
+      },
+
+      {
+        path: PATHS.dashboard_edit_about_us_page,
+        title: "dashboard-edit-about-us-page",
+        element: <Pages.DashboardEditAboutUsPage />,
         children: [],
       },
     ],

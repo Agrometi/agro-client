@@ -27,6 +27,10 @@ export { default as InfiniteScroll } from "./InfiniteScroll/InfiniteScroll";
 export { default as Counter } from "./Counter/Counter";
 export { default as ComboCard } from "./ComboCard/ComboCard";
 export { default as ContactSection } from "./ContactSection/ContactSection";
+export { default as QuillEditor } from "./QuillEditor/QuillEditor";
+export { default as SearchField } from "./SearchField/SearchField";
+export { default as ArticleCard } from "./ArticleCard/ArticleCard";
+export { default as Article } from "./Article/Article";
 
 // ========== SPINNERS ==========
 export { default as Spinner } from "./Spinner/Spinner";

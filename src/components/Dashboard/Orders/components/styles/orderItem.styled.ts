@@ -19,6 +19,18 @@ export const OrderItem = styled.li`
     border-radius: 0.5rem;
     overflow: hidden;
 
+    p {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 600;
+      border: 1px solid ${({ theme }) => theme.colors.gray};
+      color: ${({ theme }) => theme.colors.red};
+    }
+
     img {
       width: 100%;
       height: 100%;

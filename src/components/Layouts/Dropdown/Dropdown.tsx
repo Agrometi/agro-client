@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import { useCheckIsAuthenticatedUser } from "@/hooks/auth";
 
 import * as Styled from "./dropdown.styled";
+import { ErrorMessage } from "@/components/Layouts";
 
 type DropdownItemT = {
   label: React.ReactNode;
@@ -23,6 +24,8 @@ type DropdownT<T extends DropdownItemT> = {
   dropdownClass?: string;
   buttonClass?: string;
   Button: React.ReactNode;
+  hasError?: boolean;
+  message?: string;
 };
 
 const Dropdown: React.FC<DropdownT<DropdownItemT>> = ({
@@ -33,6 +36,8 @@ const Dropdown: React.FC<DropdownT<DropdownItemT>> = ({
   dropdownMaxHeight = 190,
   dropdownMinWidth = 170,
   Button,
+  hasError,
+  message,
 }) => {
   const { isAuthenticated, decodedUser } = useCheckIsAuthenticatedUser(true);
 
@@ -74,6 +79,8 @@ const Dropdown: React.FC<DropdownT<DropdownItemT>> = ({
       >
         {Button}
       </button>
+
+      {hasError && <ErrorMessage message={message || ""} />}
 
       {openDropdown && filteredItems.length > 0 && (
         <>

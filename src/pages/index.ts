@@ -26,6 +26,15 @@ export { default as PrivacyPolicyPage } from "./AboutUs/PrivacyPolicyPage";
 export { default as ShoppingCartPage } from "./ShoppingCart/ShoppingCartPage";
 export { default as ShoppingCartSuccessPage } from "./ShoppingCart/ShoppingCartSuccessPage";
 
+//========== BLOG ==========
+export { default as BlogPage } from "./Blog/BlogPage";
+
+//========== OUR_PROJECTS ==========
+export { default as OurProjectsPage } from "./OurProjects/OurProjectsPage";
+
+//========== ARTICLE ==========
+export { default as ArticlePage } from "./Article/ArticlePage";
+
 //================================ //
 //========== DASHBOARD ========== //
 //============================== //
@@ -54,6 +63,16 @@ export { default as DashboardProductsPage } from "./Dashboard/Products/Dashboard
 export { default as DashboardAddProductPage } from "./Dashboard/Products/DashboardAddProductPage";
 export { default as DashboardYourProductsPage } from "./Dashboard/Products/DashboardYourProductsPage";
 export { default as DashboardProductDetailsPage } from "./Dashboard/Products/DashboardProductDetailsPage";
+
+//========== BLOG ==========
+export { default as DashboardBlogPage } from "./Dashboard/Blog/DashboardBlogPage";
+export { default as DashboardArticlesPage } from "./Dashboard/Blog/DashboardArticlesPage";
+export { default as DashboardCreateArticlePage } from "./Dashboard/Blog/DashboardCreateArticlePage";
+export { default as DashboardArticlePage } from "./Dashboard/Blog/DashboardArticlePage";
+
+//========== ABOUT_US ==========
+export { default as DashboardAboutUsPage } from "./Dashboard/AboutUs/DashboardAboutUsPage";
+export { default as DashboardEditAboutUsPage } from "./Dashboard/AboutUs/DashboardEditAboutUsPage";
 
 // AUTH
 // export { default as AuthPage } from "./Auth/AuthPage";

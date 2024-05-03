@@ -7,14 +7,20 @@ type ProductsListItemT = {
     id: string;
     title: string;
     size: string;
+    sizeUnit: string;
     quantity: number;
     price: number;
+    priceSum: number;
     thumbnail: string;
     description: string;
   };
 };
 
 const ProductsListItem: React.FC<ProductsListItemT> = ({ product }) => {
+  const productPriceString = `${
+    product.sizeUnit ? `1${product.sizeUnit} -` : ""
+  } ${product.price}₾`;
+
   return (
     <View style={{ ...styles.productsListTr }}>
       <View
@@ -35,7 +41,14 @@ const ProductsListItem: React.FC<ProductsListItemT> = ({ product }) => {
             width: "100px",
           }}
         >
-          {product.size}
+          {product.size ? (
+            <>
+              {product.size}
+              {product.sizeUnit}
+            </>
+          ) : (
+            <>&mdash;</>
+          )}
         </Text>
 
         <Text
@@ -53,7 +66,7 @@ const ProductsListItem: React.FC<ProductsListItemT> = ({ product }) => {
             width: "100px",
           }}
         >
-          {product.price}
+          {productPriceString}
         </Text>
 
         <Text
@@ -62,20 +75,22 @@ const ProductsListItem: React.FC<ProductsListItemT> = ({ product }) => {
             width: "100px",
           }}
         >
-          {product.quantity * product.price}
+          {product.priceSum}₾
         </Text>
       </View>
 
-      <View style={{ ...styles.productDescriptionBox }}>
-        <Text
-          style={{
-            ...styles.productsListTd,
-            textAlign: "left",
-          }}
-        >
-          {product.description}
-        </Text>
-      </View>
+      {product.description && (
+        <View style={{ ...styles.productDescriptionBox }}>
+          <Text
+            style={{
+              ...styles.productsListTd,
+              textAlign: "left",
+            }}
+          >
+            {product.description}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

@@ -56,6 +56,9 @@ import { GrApps } from "react-icons/gr";
 // ========== lu ==========
 import { LuPackageCheck } from "react-icons/lu";
 
+// ========== gi ==========
+import { GiHamburgerMenu } from "react-icons/gi";
+
 const LocationIcon = CiLocationOn;
 const SearchIcon = CiSearch;
 const ShoppingCartIcon = CiShoppingCart;
@@ -88,6 +91,7 @@ const OpenInNewIcon = MdOpenInNew;
 const SortIcon = MdOutlineSort;
 const ArrowUp = IoIosArrowRoundUp;
 const ArrowDown = IoIosArrowRoundDown;
+const BurgerIcon = GiHamburgerMenu;
 
 export {
   LocationIcon,
@@ -122,4 +126,5 @@ export {
   SortIcon,
   ArrowUp,
   ArrowDown,
+  BurgerIcon,
 };

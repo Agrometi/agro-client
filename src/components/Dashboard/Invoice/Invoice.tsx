@@ -53,18 +53,18 @@ const Invoice: React.FC = () => {
           id: string;
           title: string;
           size: string;
+          sizeUnit: string;
           quantity: number;
           price: number;
+          priceSum: number;
           thumbnail: string;
           description: string;
         }>;
       } = state?.invoice;
 
   const priceSum =
-    invoice?.products.reduce(
-      (acc, product) => (acc += product.quantity * product.price),
-      0
-    ) || 0;
+    invoice?.products.reduce((acc, product) => (acc += product.priceSum), 0) ||
+    0;
 
   return invoice ? (
     <PDFViewer style={styles.viewer}>

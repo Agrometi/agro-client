@@ -4,7 +4,7 @@ import { PATHS } from "@/config/paths";
 import { useCart } from "@/hooks/utils";
 import { useSizeChange } from "@/hooks/utils";
 import { useGetProductQuery } from "@/hooks/api/products";
-import { useAppUIContext } from "@/Providers/useProviders";
+import { useAppUIContext } from "@/Providers";
 import { useDeleteProductQuery } from "@/hooks/api/dashboard/products";
 
 import {

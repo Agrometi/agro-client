@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { useFilterContext } from "@/Providers/useProviders";
+import { useFilterContext } from "@/Providers";
 import { useGetProductsQuery } from "@/hooks/api/products";
 
 import {

@@ -9,6 +9,7 @@ const AGRO_PASSPORT_KEY = "AGRO_PASSPORT";
 const CATEGORIES_PER_PAGE = 42;
 const PRODUCT_PER_PAGE = 25;
 const COMBOS_PER_PAGE = 15;
+const ARTICLES_PER_PAGE = 10;
 
 const RouterHistory: RouterHistoryT = {
   navigate: () => {},
@@ -29,4 +30,5 @@ export {
   CATEGORIES_PER_PAGE,
   PRODUCT_PER_PAGE,
   COMBOS_PER_PAGE,
+  ARTICLES_PER_PAGE,
 };

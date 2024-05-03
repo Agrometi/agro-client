@@ -2,7 +2,7 @@ import { memo } from "react";
 import { NavLink } from "react-router-dom";
 
 import { PATHS } from "@/config/paths";
-import { useFilterContext } from "@/Providers/useProviders";
+import { useFilterContext } from "@/Providers";
 
 import * as Styled from "./styles/contentHead.styled";
 import { Dropdown, TextField } from "@/components/Layouts";
@@ -16,7 +16,7 @@ const sort = [
   {
     label: (
       <>
-        Created At <ArrowUp />
+        დამატების თარიღი <ArrowUp />
       </>
     ),
     value: "createdAt",
@@ -24,7 +24,7 @@ const sort = [
   {
     label: (
       <>
-        Created At <ArrowDown />
+        დამატების თარიღი <ArrowDown />
       </>
     ),
     value: "-createdAt",
@@ -32,7 +32,7 @@ const sort = [
   {
     label: (
       <>
-        Price <ArrowUp />
+        ფასი <ArrowUp />
       </>
     ),
     value: "price",
@@ -40,7 +40,7 @@ const sort = [
   {
     label: (
       <>
-        Price <ArrowDown />
+        ფასი <ArrowDown />
       </>
     ),
     value: "-price",
@@ -77,7 +77,7 @@ const ContentHead: React.FC<ContentHeadT> = memo(({ boxType }) => {
       <div className="all-products__content-header--actions">
         <Dropdown
           Button={
-            <span className="sort-btn__content">
+            <span className="sort-btn__content" title="ფილტრი">
               <SortIcon />
               {currentSort && (
                 <span>
@@ -92,6 +92,7 @@ const ContentHead: React.FC<ContentHeadT> = memo(({ boxType }) => {
             active: sortable.value === currentSort,
           }))}
           buttonClass={`sort-btn ${currentSort ? "active" : ""}`}
+          dropdownMinWidth={200}
         />
 
         <div className="search-box">
@@ -99,7 +100,7 @@ const ContentHead: React.FC<ContentHeadT> = memo(({ boxType }) => {
             <TextField
               hasError={false}
               message=""
-              placeholder="search"
+              placeholder="ძებნა"
               fieldProps={{
                 name: "search",
                 value: search,

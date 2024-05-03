@@ -7,10 +7,14 @@ export const Dropdown = styled.div<{
   $dropdown_min_width: number;
 }>`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   .dropdown__trigger-btn {
     position: relative;
     z-index: 99;
+    width: max-content;
 
     &.active {
       fill: ${({ theme }) => theme.colors.blue};

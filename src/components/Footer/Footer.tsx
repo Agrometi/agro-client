@@ -13,6 +13,10 @@ const Footer: React.FC = () => {
         <Link to={PATHS.about_us_page}>ჩვენს შესახებ</Link>
         <Link to={PATHS.privacy_policy__page}>უსაფრთხოების პირობები</Link>
       </div>
+
+      <figure>
+        <img src="/assets/ibiard.jpeg" alt="იბიარდი" height={30} />
+      </figure>
     </Styled.Footer>
   );
 };
