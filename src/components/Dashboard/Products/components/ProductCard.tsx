@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import { PATHS, DYNAMIC_ROUTES } from "@/config/paths";
-import { useAppUIContext } from "@/Providers/useProviders";
+import { useAppUIContext } from "@/Providers";
 
 import * as Styled from "./productCard.styled";
 import { LineClamp, Button } from "@/components/Layouts";

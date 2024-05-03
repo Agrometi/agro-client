@@ -5,7 +5,7 @@ import { HookFormTextFieldT } from "@/interface/form.types";
 
 type TextareaFieldT = {
   label?: string;
-  message: string;
+  message?: string;
   hasError: boolean;
   fieldProps: HookFormTextFieldT;
 } & React.ComponentProps<"textarea">;

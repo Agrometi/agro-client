@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { useCreateComboContext } from "@/Providers/useProviders";
+import { useCreateComboContext } from "@/Providers";
 
 import {
   TextField,

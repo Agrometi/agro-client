@@ -9,8 +9,10 @@ type ProductsListT = {
     id: string;
     title: string;
     size: string;
+    sizeUnit: string;
     quantity: number;
     price: number;
+    priceSum: number;
     thumbnail: string;
     description: string;
   }>;

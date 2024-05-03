@@ -17,6 +17,21 @@ const PATHS = {
   all_combos_page: "/shop/combos",
   combo_page: "/shop/combos/:comboId",
 
+  // ============================= //
+  // ========== BLOG ↓ ========== //
+  // =========================== //
+  blog_page: "/blog",
+
+  // ===================================== //
+  // ========== OUR_PROJECTS ↓ ========== //
+  // =================================== //
+  our_projects_page: "/projects",
+
+  // ===================================== //
+  // ========== ARTICLE ↓ ========== //
+  // =================================== //
+  article_page: "/articles/:articleId",
+
   // ================================= //
   // ========== ABOUT_US ↓ ========== //
   // =============================== //
@@ -48,6 +63,12 @@ const PATHS = {
   dashboard_create_combo_page: "/dashboard/combos/create",
   dashboard_combo_details_page: "/dashboard/combos/all/:comboId",
 
+  // ========== BLOG ==========
+  dashboard_blog_page: "/dashboard/blog",
+  dashboard_blog_articles_page: "/dashboard/blog/articles",
+  dashboard_create_article_page: "/dashboard/blog/create",
+  dashboard_article_page: "/dashboard/blog/:articleId",
+
   // ========== ORDERS ==========
   dashboard_orders_page: "/dashboard/orders",
   dashboard_generate_invoice_page: "/dashboard/orders/invoice",
@@ -57,6 +78,10 @@ const PATHS = {
   dashboard_your_products_page: "/dashboard/products/all",
   dashboard_add_product_page: "/dashboard/products/create",
   dashboard_product_details_page: "/dashboard/products/all/:productId",
+
+  // ========== AUTH ==========
+  dashboard_about_us_page: "/dashboard/about-us",
+  dashboard_edit_about_us_page: "/dashboard/about-us/edit",
 
   // ========== AUTH ==========
   auth_page: "/dashboard/auth",
@@ -77,6 +102,10 @@ const DYNAMIC_ROUTES = {
     PATHS.dashboard_combo_details_page.replace(":comboId", comboId),
   dashboard_product_details_page: (productId: string) =>
     PATHS.dashboard_product_details_page.replace(":productId", productId),
+  article_page: (articleId: string) =>
+    PATHS.article_page.replace(":articleId", articleId),
+  dashboard_article_page: (articleId: string) =>
+    PATHS.dashboard_article_page.replace(":articleId", articleId),
 };
 
 const PRIVATE_ROUTES: Array<string> = [];

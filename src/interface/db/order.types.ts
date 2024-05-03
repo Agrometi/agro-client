@@ -17,6 +17,7 @@ type GroupedOrdersListedOrderT = {
 type GroupedOrdersListedOrderCommonProductT = {
   _id: string;
   size: string;
+  sizeUnit: string;
   quantity: number;
 } & (
   | { productType: "PRODUCT"; product: GroupedOrdersListedOrderProductT }

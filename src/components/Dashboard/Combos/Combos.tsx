@@ -1,7 +1,7 @@
 import { PATHS } from "@/config/paths";
 
 import * as Styled from "./styles/combos.styled";
-import Navigation from "../utils/Navigation";
+import Navigation from "@/components/Dashboard/utils/Navigation";
 
 type CombosT = {
   children: React.ReactNode;

@@ -42,10 +42,10 @@ export const Button = styled.button<ButtonT>`
       case "primary":
         return $fillType === "filled"
           ? css`
-              background-color: ${({ theme }) => theme.colors.blue};
+              background-color: ${({ theme }) => theme.colors.primary};
 
               &:hover {
-                background-color: ${({ theme }) => theme.colors.blue_shade};
+                background-color: ${({ theme }) => theme.colors.primary};
               }
             `
           : css`

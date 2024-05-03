@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 import { useSearchParams } from "@/hooks/utils";
-import { useCreateComboContext } from "@/Providers/useProviders";
+import { useCreateComboContext } from "@/Providers";
 
 import FilterProvider from "@/Providers/FilterProvider";
 

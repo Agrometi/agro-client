@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "@/hooks/utils";
 import { DYNAMIC_ROUTES, PATHS } from "@/config/paths";
 import { useGetComboQuery } from "@/hooks/api/combos";
-import { useAppUIContext } from "@/Providers/useProviders";
+import { useAppUIContext } from "@/Providers";
 import { useDeleteComboQuery } from "@/hooks/api/dashboard/combos";
 
 import {

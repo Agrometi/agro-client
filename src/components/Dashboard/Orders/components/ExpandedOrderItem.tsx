@@ -12,14 +12,19 @@ import {
 type ExpandedOrderItemT = {
   order: Omit<GroupedOrdersListedOrderT, "products">;
   product: GroupedOrdersListedOrderCommonProductT;
+  isDeleted: boolean;
 };
 
 const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
   order,
   product,
+  isDeleted,
 }) => {
-  const productInfo =
-    product.productType === "COMBO" ? product.combo : product.product;
+  const productInfo = isDeleted
+    ? { assets: [], title: "", price: "", _id: "" }
+    : product.productType === "COMBO"
+    ? product.combo
+    : product.product;
 
   const { setParam, getParam } = useSearchParams();
 
@@ -29,13 +34,17 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
   return (
     <Styled.OrderItem className={isOrderInReview ? "active" : ""}>
       <figure className="order-fig">
-        <img
-          src={productInfo.assets[0]}
-          alt={productInfo.title}
-          title={productInfo.title}
-          width="200"
-          loading="lazy"
-        />
+        {!isDeleted ? (
+          <img
+            src={productInfo.assets[0]}
+            alt={productInfo.title}
+            title={productInfo.title}
+            width="200"
+            loading="lazy"
+          />
+        ) : (
+          <p>წაშლილი პროდუქტი</p>
+        )}
       </figure>
 
       <div className="order-details">
@@ -62,7 +71,7 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
           <div className="grid-box__sub">
             <span>პროდუქტი:</span>
             &nbsp;
-            <span>{productInfo.title}</span>
+            {isDeleted ? <>&mdash;</> : <span>{productInfo.title}</span>}
           </div>
 
           <div className="grid-box__sub">
@@ -76,7 +85,11 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
           <div className="grid-box__sub">
             <span>პროდუქტის ზომა:</span>
             &nbsp;
-            <span>{product.size}</span>
+            {product.productType === "COMBO" || isDeleted || !product.size ? (
+              <>&mdash;</>
+            ) : (
+              <span>{product.size}</span>
+            )}
           </div>
 
           <div className="grid-box__sub">

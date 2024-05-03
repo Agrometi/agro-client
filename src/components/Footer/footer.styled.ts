@@ -12,6 +12,8 @@ export const Footer = styled.footer`
   margin: 0 auto;
   padding: 0 1rem;
   padding-bottom: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray};
+  padding-top: 1rem;
 
   div {
     display: flex;

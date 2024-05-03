@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
-import { useFilterContext } from "@/Providers/useProviders";
+import { useFilterContext } from "@/Providers";
 
 import { SelectField } from "@/components/Layouts";
 import * as Styled from "./styles/filter.styled";

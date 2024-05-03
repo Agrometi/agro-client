@@ -49,6 +49,7 @@ const useProductStore = create<OrderStoreT>()(
               product: product.productType === "product" ? product._id : "",
               combo: product.productType === "product" ? "" : product._id,
               size: product.productType === "product" ? product.size.size : "",
+              sizeUnit: product.sizeUnit,
             })),
             fullname: params.fullname,
             address: params.address,

@@ -25,6 +25,10 @@ const ExpandedOrdersList: React.FC<ExpandedOrdersListT> = ({
             <Fragment key={order._id}>
               {order.products.map((product) => (
                 <ExpandedOrderItem
+                  isDeleted={
+                    (product.productType === "PRODUCT" && !product.product) ||
+                    (product.productType === "COMBO" && !product.combo)
+                  }
                   order={order}
                   product={product}
                   key={`${product._id}-${product.size}--${order.createdAt}`}

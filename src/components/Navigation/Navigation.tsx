@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { PATHS } from "@/config/paths.ts";
 import { shoppingCartStore } from "@/store/index.ts";
+import useWindowDimension from "@/hooks/utils/useWindowDimension.ts";
 
 import {
   PhoneIcon,
@@ -10,7 +12,7 @@ import {
   WhatsUpIcon,
   LocationIcon,
   ShoppingCartIcon,
-  // SearchIcon,
+  BurgerIcon,
 } from "@/components/Layouts/Icons";
 // import { TextField } from "@/components/Layouts";
 import * as Styled from "./navigation.styled.ts";
@@ -18,7 +20,15 @@ import * as Styled from "./navigation.styled.ts";
 type NavigationT = {};
 
 const Navigation: React.FC<NavigationT> = () => {
+  const [activeBurgerNav, setActiveBurgerNav] = useState(false);
+
   const productsCount = shoppingCartStore.use.products().length;
+
+  const { width } = useWindowDimension();
+
+  useEffect(() => {
+    if (width > 640 && activeBurgerNav) setActiveBurgerNav(false);
+  }, [width]);
 
   return (
     <>
@@ -77,7 +87,18 @@ const Navigation: React.FC<NavigationT> = () => {
           </div>
 
           <div className="nav-row__center">
-            <ul className="routes-list">
+            <button
+              className="burger-btn"
+              onClick={() => setActiveBurgerNav((prev) => !prev)}
+            >
+              <BurgerIcon />
+            </button>
+
+            <ul
+              className={`routes-list ${
+                activeBurgerNav ? "active scroll-block" : ""
+              }`}
+            >
               <li className="routes-list__item">
                 <NavLink
                   to={PATHS.home_page}
@@ -98,6 +119,24 @@ const Navigation: React.FC<NavigationT> = () => {
 
               <li className="routes-list__item">
                 <NavLink
+                  to={PATHS.blog_page}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  ბლოგი
+                </NavLink>
+              </li>
+
+              <li className="routes-list__item">
+                <NavLink
+                  to={PATHS.our_projects_page}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  განხორციელებული პროექტები
+                </NavLink>
+              </li>
+
+              <li className="routes-list__item">
+                <NavLink
                   to={PATHS.about_us_page}
                   className={({ isActive }) => (isActive ? "active" : "")}
                 >
@@ -105,19 +144,6 @@ const Navigation: React.FC<NavigationT> = () => {
                 </NavLink>
               </li>
             </ul>
-
-            {/* <div className="search-field">
-              <SearchIcon />
-              <TextField
-                fieldProps={{
-                  name: "",
-                  onChange: () => {},
-                  value: "",
-                }}
-                message=""
-                hasError={false}
-              />
-            </div> */}
 
             <Link to={PATHS.shopping_cart_page} className="cart-btn">
               {productsCount > 0 && <span>{productsCount}</span>}

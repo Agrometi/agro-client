@@ -29,7 +29,7 @@ export const Navigation = styled.nav`
   }
 
   .nav-row__center {
-    flex: 4;
+    flex: 7;
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -46,23 +46,6 @@ export const Navigation = styled.nav`
       li a.active {
         font-weight: 600;
         color: ${({ theme }) => theme.colors.primary};
-      }
-    }
-
-    .search-field {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      background-color: #fff;
-      border-radius: 0.5rem;
-      padding: 0 0.5rem;
-
-      svg {
-        font-size: ${({ theme }) => theme.fontSize.xxl};
-      }
-
-      input {
-        border: none;
       }
     }
 
@@ -88,6 +71,10 @@ export const Navigation = styled.nav`
         font-size: ${({ theme }) => theme.fontSize.sm};
       }
     }
+
+    .burger-btn {
+      display: none;
+    }
   }
 
   .nav-row__right {
@@ -107,12 +94,13 @@ export const Navigation = styled.nav`
   @media screen and (${({ theme }) => theme.breakpoints.desktop_sm}) {
     padding: 0 1rem;
 
-    .search-field {
-      margin-left: auto;
+    .nav-row__right {
+      display: none;
+    }
 
-      [data-text-field] {
-        display: none;
-      }
+    .nav-row__center {
+      flex: 9;
+      border-right-color: transparent;
     }
   }
 
@@ -129,46 +117,55 @@ export const Navigation = styled.nav`
         gap: 1rem;
       }
 
-      .cart-btn,
-      .search-field svg {
-        font-size: ${({ theme }) => theme.fontSize.lg};
+      .cart-btn {
+        font-size: ${({ theme }) => theme.fontSize.xl};
       }
-    }
-
-    .nav-row__right svg {
-      font-size: ${({ theme }) => theme.fontSize.lg};
     }
   }
 
   @media screen and (${({ theme }) => theme.breakpoints.mobile_lg}) {
     .nav-row__center {
-      border-right: none;
-      gap: 1rem;
-    }
+      justify-content: flex-end;
+      border: none;
+      position: relative;
 
-    .nav-row__right {
-      display: none;
+      .routes-list {
+        display: none;
+      }
+
+      .routes-list.active {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        position: absolute;
+        width: 25rem;
+        height: 95vh;
+        z-index: 999;
+        top: 100%;
+        right: -1rem;
+        background-color: ${({ theme }) => theme.colors.white};
+        box-shadow: -1.96px 1.96px 2px rgba(0, 0, 0, 0.15);
+      }
+
+      .cart-btn {
+        order: 1;
+      }
+
+      .burger-btn {
+        order: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: ${({ theme }) => theme.fontSize.lg};
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 
   @media screen and (${({ theme }) => theme.breakpoints.mobile}) {
-    .nav-row__left {
-      width: max-content;
-      flex: none;
-
-      img {
-        width: 3rem;
-      }
-    }
-
-    .nav-row__center {
-      border: none;
-      justify-content: space-between;
-    }
-
-    .search-field {
-      margin: unset;
-      margin-left: auto;
+    .nav-row__left img {
+      width: 3rem;
     }
   }
 `;

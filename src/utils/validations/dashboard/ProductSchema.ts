@@ -5,16 +5,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { isNumeric } from "@/utils/validations/helpers/customValidators";
 
 const ProductSchema = z.object({
-  title: z.string(),
-  description: z.string(),
+  title: z.string().min(1, "გთხოვთ შეიყვანოთ პროდუქტის სათაური"),
+  description: z.string().min(1, "გთხოვთ შეიყვანოთ პროდუქტის აღწერა"),
   price: z.string().refine(isNumeric.validator, isNumeric.message),
   category: z.object({
-    title: z.string(),
-    value: z.string(),
+    title: z.string().min(1, "გთხოვთ მიუთითოთ კკატეგორია"),
+    value: z.string().min(1, "გთხოვთ მიუთითოთ კატეგორია"),
   }),
   sizeUnit: z.object({
-    title: z.string(),
-    value: z.string(),
+    title: z.string().min(1, "გთხოვთ მიუთითოთ ზომის ერთეული"),
+    value: z.string().min(1, "გთხოვთ მიუთითოთ ზომის ერთეული"),
   }),
   sizes: z
     .array(

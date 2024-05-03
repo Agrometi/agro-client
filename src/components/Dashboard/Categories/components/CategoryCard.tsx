@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { PATHS } from "@/config/paths";
-import { useAppUIContext } from "@/Providers/useProviders";
+import { useAppUIContext } from "@/Providers";
 
 import { Button } from "@/components/Layouts";
 import { DeleteIcon, EditIcon } from "@/components/Layouts/Icons";

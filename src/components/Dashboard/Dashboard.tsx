@@ -25,6 +25,14 @@ const routes = [
     title: "ნაკრები",
   },
   {
+    path: PATHS.dashboard_blog_articles_page,
+    title: "ბლოგი",
+  },
+  {
+    path: PATHS.dashboard_about_us_page,
+    title: "ჩვენს შესახებ",
+  },
+  {
     path: PATHS.dashboard_orders_page,
     title: "შეკვეთები",
   },
