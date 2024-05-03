@@ -14,9 +14,13 @@ const Footer: React.FC = () => {
         <Link to={PATHS.privacy_policy__page}>უსაფრთხოების პირობები</Link>
       </div>
 
-      <figure>
+      <a
+        href="https://www.facebook.com/EBRD.Georgia/"
+        referrerPolicy="no-referrer"
+        target="_blank"
+      >
         <img src="/assets/ibiard.jpeg" alt="იბიარდი" height={30} />
-      </figure>
+      </a>
     </Styled.Footer>
   );
 };
