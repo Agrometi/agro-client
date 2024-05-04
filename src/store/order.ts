@@ -42,24 +42,33 @@ const useProductStore = create<OrderStoreT>()(
         try {
           set(() => ({ createStatus: getStatus("PENDING") }));
 
+          const products = params.products.map((product) => ({
+            quantity: product.size.selectedCount,
+            productType: product.productType.toLocaleUpperCase().trim(),
+            product: product.productType === "product" ? product._id : "",
+            combo: product.productType === "product" ? "" : product._id,
+            size: product.productType === "product" ? product.size.size : "",
+            sizeUnit: product.sizeUnit,
+          }));
+
+          const totalPrice = params.products.reduce(
+            (acc, product) =>
+              (acc +=
+                product.productType === "product"
+                  ? product.price *
+                    product.size.size *
+                    product.size.selectedCount
+                  : product.size.selectedCount * product.price),
+            0
+          );
+
           const requestBody = {
-            products: params.products.map((product) => ({
-              quantity: product.size.selectedCount,
-              productType: product.productType.toLocaleUpperCase().trim(),
-              product: product.productType === "product" ? product._id : "",
-              combo: product.productType === "product" ? "" : product._id,
-              size: product.productType === "product" ? product.size.size : "",
-              sizeUnit: product.sizeUnit,
-            })),
+            products,
+            totalPrice,
             fullname: params.fullname,
             address: params.address,
             id_number: params.id_number,
             phone_number: params.phone_number,
-            totalPrice: params.products.reduce(
-              (acc, product) =>
-                (acc += product.size.selectedCount * product.price),
-              0
-            ),
           };
 
           await axiosPrivateQuery.post("/orders", requestBody);

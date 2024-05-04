@@ -44,6 +44,8 @@ const ShoppingCartItem: React.FC<ShoppingCartItemT> = ({ product }) => {
 
   const isProductType = product.productType === "product";
 
+  console.log(product);
+
   return (
     <li>
       <div className="remove-btn">
@@ -113,7 +115,10 @@ const ShoppingCartItem: React.FC<ShoppingCartItemT> = ({ product }) => {
       </div>
 
       <div className="total-price">
-        {size.size * product.price * size.selectedCount}₾
+        {isProductType
+          ? size.size * product.price * size.selectedCount
+          : product.price * size.selectedCount}
+        ₾
       </div>
     </li>
   );

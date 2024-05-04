@@ -38,5 +38,6 @@ export const Unknown = styled.div`
     font-size: ${({ theme }) => theme.fontSize.md};
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.colors.blue_shade};
+    color: ${({ theme }) => theme.colors.white};
   }
 `;
