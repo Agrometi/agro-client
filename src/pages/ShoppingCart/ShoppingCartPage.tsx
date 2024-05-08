@@ -19,9 +19,8 @@ const ShoppingCartPage: React.FC = () => {
 
       <SuspenseContainer>
         <ShoppingCart />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

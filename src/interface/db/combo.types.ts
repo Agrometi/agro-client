@@ -12,6 +12,7 @@ type ComboT = {
       price: number;
       assets: Array<string>;
       sizes: Array<string>;
+      sizeUnit: string;
     };
     size: {
       size: string;

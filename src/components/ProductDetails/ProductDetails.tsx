@@ -29,7 +29,7 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
   const navigate = useNavigate();
 
   const { data, status } = useGetProductQuery();
-  const { onDeleteQuery, status: deleteStatus } = useDeleteProductQuery();
+  const { onDeleteQuery, singleStatus: deleteStatus } = useDeleteProductQuery();
 
   const { activateDialog } = useAppUIContext();
 
@@ -73,6 +73,8 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
 
   const hasError = status.error || deleteStatus.error;
   const errorMessage = status.message || deleteStatus.message;
+
+  const priceSum = size.size * data.price * size.selectedCount;
 
   return (
     <Styled.ProductDetails>
@@ -138,9 +140,11 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
                     />
                   </div>
 
-                  <div className="details-actions__total-price">
-                    {size.size * data.price * size.selectedCount}₾
-                  </div>
+                  {!isNaN(priceSum) && (
+                    <div className="details-actions__total-price">
+                      {priceSum}₾
+                    </div>
+                  )}
 
                   <Button
                     className="details-actions__add-btn"

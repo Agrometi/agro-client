@@ -54,7 +54,7 @@ const ContactSection: React.FC<ContactT> = () => {
         </span>
 
         <div className="contact-box__detail">
-          <span>WhatsUp</span>
+          <span>WhatsApp</span>
         </div>
       </a>
 

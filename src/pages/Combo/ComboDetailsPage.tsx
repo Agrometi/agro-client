@@ -15,9 +15,8 @@ const ComboPage: React.FC = () => {
 
       <SuspenseContainer>
         <ComboDetails />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

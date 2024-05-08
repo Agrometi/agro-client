@@ -15,9 +15,8 @@ const ProductDetailsPage: React.FC = () => {
 
       <SuspenseContainer>
         <ProductDetails />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

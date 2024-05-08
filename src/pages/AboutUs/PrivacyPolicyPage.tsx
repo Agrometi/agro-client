@@ -13,9 +13,8 @@ const PrivacyPolicyPage: React.FC = () => {
 
       <SuspenseContainer>
         <PrivacyPolicy />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

@@ -18,9 +18,9 @@ const ShoppingPage: React.FC = () => {
         <ShoppingLayout>
           <Outlet />
         </ShoppingLayout>
-      </SuspenseContainer>
 
-      <Footer />
+        <Footer />
+      </SuspenseContainer>
     </>
   );
 };

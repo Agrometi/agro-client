@@ -62,19 +62,26 @@ const ComboActiveItem: React.FC<ComboActiveItemT> = memo(() => {
             <div className="grid-box__sub">
               <span>ფასი:</span>
               &nbsp;
-              <span>{product.price}</span>
+              <span>
+                1 {product.sizeUnit}&mdash;{product.price}₾
+              </span>
             </div>
 
             <div className="grid-box__sub">
               <span>ჯამური ფასი:</span>
               &nbsp;
-              <span>{product.price * product.size.selectedCount}</span>
+              <span>
+                {product.price * product.size.size * product.size.selectedCount}
+                ₾
+              </span>
             </div>
 
             <div className="grid-box__sub">
               <span>ზომა:</span>
               &nbsp;
-              <span>{product.size.size}</span>
+              <span>
+                {product.size.size}&nbsp;{product.sizeUnit}
+              </span>
             </div>
 
             {/* <div className="grid-box__sub">

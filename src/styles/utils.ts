@@ -48,8 +48,6 @@ const quill = css`
 `;
 
 export const quillReadOnly = css`
-  ${quill};
-
   .ql-container.ql-bubble {
     .ql-clipboard,
     .ql-tooltip {
@@ -61,24 +59,8 @@ export const quillReadOnly = css`
         display: inline-block;
       }
 
-      p:has(img) {
-        width: max-content;
-        max-width: 100%;
-        height: auto;
-        overflow: hidden;
-        border-radius: 0.5rem;
-        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
-        margin: 3rem auto;
-        padding: 0 !important;
-        line-height: 1;
-        letter-spacing: 0px;
-
-        img {
-          object-fit: contain;
-          max-width: 100%;
-          height: 100%;
-          margin-bottom: -8px;
-        }
+      a {
+        color: ${({ theme }) => theme.colors.blue};
       }
 
       iframe {
@@ -99,6 +81,28 @@ export const quillReadOnly = css`
         pointer-events: none !important;
         color: ${({ theme }) => theme.colors.text} !important;
         ${hyphens};
+      }
+
+      p:has(img) {
+        width: max-content;
+        max-width: 100%;
+        height: auto;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
+        margin: 3rem auto;
+        padding: 0 !important;
+        line-height: 1;
+        letter-spacing: 0px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+
+        img {
+          object-fit: contain;
+          max-width: 100%;
+          height: 100%;
+          margin-bottom: -8px;
+        }
       }
 
       p > span {
@@ -142,11 +146,11 @@ export const quillReadOnly = css`
       }
     }
   }
+
+  ${quill};
 `;
 
 export const quillEdit = css`
-  ${quill};
-
   .quill .ql-toolbar.ql-snow,
   .quill .ql-container.ql-snow {
     border-radius: 1rem;
@@ -191,4 +195,6 @@ export const quillEdit = css`
       box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
     }
   }
+
+  ${quill};
 `;

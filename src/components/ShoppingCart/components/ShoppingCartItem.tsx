@@ -44,8 +44,6 @@ const ShoppingCartItem: React.FC<ShoppingCartItemT> = ({ product }) => {
 
   const isProductType = product.productType === "product";
 
-  console.log(product);
-
   return (
     <li>
       <div className="remove-btn">

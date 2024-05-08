@@ -157,6 +157,17 @@ const useProductStore = create<ComboStoreT>()(
             }
           },
 
+          async deleteCombos(params) {
+            try {
+              await axiosPrivateQuery.post(`/combos/remove`, {
+                combos: params.combosIds,
+              });
+            } catch (error: any) {
+              logger(error);
+              throw error;
+            }
+          },
+
           async getAll(params) {
             try {
               set(() => ({ readStatus: getStatus("PENDING") }));
@@ -414,9 +425,10 @@ const useProductStore = create<ComboStoreT>()(
 
           cleanUpComboForm() {
             set(() => ({
-              newAssets: initialState.newAssets,
               addedProducts: initialState.addedProducts,
               existingAssets: initialState.existingAssets,
+              addedExistingAssets: initialState.addedExistingAssets,
+              newAssets: initialState.newAssets,
               assets_to_delete: initialState.assets_to_delete,
             }));
           },

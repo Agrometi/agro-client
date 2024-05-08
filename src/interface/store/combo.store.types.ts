@@ -2,6 +2,7 @@ import {
   GetComboArgsT,
   CreateComboArgsT,
   DeleteComboArgsT,
+  DeleteCombosArgsT,
   UpdateComboArgsT,
   GetAllCombosArgsT,
 } from "@/interface/API/combo.api.types";
@@ -41,6 +42,8 @@ type ComboActionsT = {
   cleanUpAll: () => void;
 
   delete: (params: DeleteComboArgsT) => Promise<void>;
+
+  deleteCombos: (params: DeleteCombosArgsT) => Promise<void>;
 
   update: (
     params: Omit<UpdateComboArgsT, "data"> & {
