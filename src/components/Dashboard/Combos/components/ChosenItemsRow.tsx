@@ -14,7 +14,7 @@ const ChosenItemsRow: React.FC<AddedItemsRowT> = memo(() => {
     .size;
 
   const priceSum = addedProducts.reduce(
-    (acc, p) => (acc += p.price * p.size.selectedCount),
+    (acc, p) => (acc += p.price * p.size.size * p.size.selectedCount),
     0
   );
 
@@ -33,7 +33,7 @@ const ChosenItemsRow: React.FC<AddedItemsRowT> = memo(() => {
         <div>
           <span>ჯამური ფასი:</span>
           &nbsp;
-          <span>{priceSum}</span>
+          <span>{priceSum}₾</span>
         </div>
       </div>
 

@@ -55,6 +55,27 @@ const GlobalStyles = createGlobalStyle`
     font-family: inherit;
   }
 
+  /* QUILL */
+  
+
+  .ql-picker.ql-font {
+    .ql-picker-item {
+      font-size: 0;
+
+      &:before {
+        content: attr(data-value) !important;
+        font-size: 14px;
+      }
+    }
+    
+    
+    .ql-active {
+      &:before {
+        content: attr(data-value) !important;
+        font-size: 14px;
+      }
+    }
+  }
 `;
 
 export { GlobalStyles };

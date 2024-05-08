@@ -1,3 +1,5 @@
+import logger from "./logger";
+
 class FileController {
   async convertFileToBase64Str(file: File): Promise<string> {
     return new Promise<string>((resolve, _) => {
@@ -7,7 +9,7 @@ class FileController {
 
         fileReader.onload = (e) => resolve(e.target?.result?.toString() || "");
       } catch (error) {
-        console.log(error);
+        logger(error);
       }
     });
   }

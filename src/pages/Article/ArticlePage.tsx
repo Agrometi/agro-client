@@ -13,9 +13,8 @@ const ArticlePage: React.FC = () => {
 
       <SuspenseContainer>
         <Article root="client" />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

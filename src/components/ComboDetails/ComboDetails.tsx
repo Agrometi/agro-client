@@ -154,7 +154,7 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
                     className="contained-products__item"
                   >
                     <figure>
-                      <img src={product.product.assets[0]} alt="" />
+                      <img src={product.product?.assets?.[0]} alt="" />
                     </figure>
 
                     <div className="contained-product__item-details">
@@ -169,7 +169,9 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
                         <div>
                           <span>ზომა:</span>
                           &nbsp;
-                          <span>{product.size.size}</span>
+                          <span>
+                            {product.size.size} {product.product.sizeUnit}
+                          </span>
                         </div>
 
                         <div>
@@ -181,14 +183,21 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
                         <div>
                           <span>ფასი:</span>
                           &nbsp;
-                          <span>{product.product.price}₾</span>
+                          <span>
+                            1&nbsp;{product.product.sizeUnit}
+                            &nbsp; &mdash; &nbsp;
+                            {product.product.price}₾
+                          </span>
                         </div>
 
                         <div>
                           <span>ჯამური ფასი:</span>
                           &nbsp;
                           <span>
-                            {product.product.price * product.size.quantity}₾
+                            {product.product.price *
+                              Number(product.size.size) *
+                              product.size.quantity}
+                            ₾
                           </span>
                         </div>
                       </div>
@@ -198,7 +207,13 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
                         title="პროდუქტის ნახვა"
                         referrerPolicy="no-referrer"
                         className="view-product__btn"
-                        to={DYNAMIC_ROUTES.product_page(product.product._id)}
+                        to={
+                          isOnDashboard
+                            ? DYNAMIC_ROUTES.dashboard_product_details_page(
+                                product.product._id
+                              )
+                            : DYNAMIC_ROUTES.product_page(product.product._id)
+                        }
                       >
                         <OpenInNewIcon />
                       </Link>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { logger } from "@/utils";
 import { PATHS } from "@/config/paths";
 import useCheckIsAuthenticatedUser from "./useCheckIsAuthenticatedUser";
 
@@ -18,7 +19,7 @@ export default function useRedirectUnAuthorized() {
         const { isAuthenticatedUser } = await check();
         if (!isAuthenticatedUser) navigate(PATHS.auth_page);
       } catch (error) {
-        console.error(error);
+        logger(error);
       } finally {
         setLoading(false);
       }

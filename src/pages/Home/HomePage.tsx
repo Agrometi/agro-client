@@ -16,8 +16,8 @@ const HomePage: React.FC = () => {
       <Navigation />
       <SuspenseContainer>
         <Home />
+        <Footer />
       </SuspenseContainer>
-      <Footer />
     </>
   );
 };

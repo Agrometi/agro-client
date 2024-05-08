@@ -17,9 +17,8 @@ const AboutUsPage: React.FC = () => {
 
       <SuspenseContainer>
         <AboutUs />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

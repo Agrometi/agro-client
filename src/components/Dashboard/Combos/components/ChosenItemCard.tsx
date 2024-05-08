@@ -72,6 +72,9 @@ const ChosenItemCard: React.FC<ChosenItemCardT> = ({ product, className }) => {
       { key: "product-size", value: product.size.size.toString() },
     ]);
 
+  const priceSum =
+    product.size.size * product.price * product.size.selectedCount;
+
   return (
     <Styled.ItemToChooseCard onClick={onItemReview} className={className || ""}>
       <figure className="item--fig">
@@ -92,7 +95,7 @@ const ChosenItemCard: React.FC<ChosenItemCardT> = ({ product, className }) => {
             <strong>ჯამური ფასი:</strong>
           </span>
           &nbsp;
-          <span>{product.price * product.size.selectedCount}₾</span>
+          <span>{priceSum}₾</span>
         </div>
 
         <div className="item--actions">
@@ -101,7 +104,9 @@ const ChosenItemCard: React.FC<ChosenItemCardT> = ({ product, className }) => {
               <strong>ზომა:</strong>
             </span>
             &nbsp;
-            <span>{product.size.size}</span>
+            <span>
+              {product.size.size}&nbsp;{product.sizeUnit}
+            </span>
           </div>
 
           {/* <div className="total-quantity--box">

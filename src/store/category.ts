@@ -12,7 +12,7 @@ import {
   CategoryStateT,
   CategoryStoreT,
 } from "@/interface/store/category.store.types";
-import { CategoryT } from "@/interface/db/category.types";
+// import { CategoryT } from "@/interface/db/category.types";
 import { GetAllCategoriesResponseT } from "@/interface/API/category.api.types";
 
 const initialState: CategoryStateT = {
@@ -83,9 +83,8 @@ const useCategoryStore = create<CategoryStoreT>()(
         try {
           set(() => ({ readStatus: getStatus("PENDING") }));
 
-          const { data }: AxiosResponse<CategoryT> =
-            await axiosPrivateQuery.get(`${params.categoryId}`);
-          console.log(data);
+          // const { data }: AxiosResponse<CategoryT> =
+          await axiosPrivateQuery.get(`${params.categoryId}`);
 
           set(() => ({ readStatus: getStatus("SUCCESS") }));
         } catch (error: any) {

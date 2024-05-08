@@ -123,7 +123,9 @@ const ItemToChooseCard: React.FC<ItemToChooseCardT> = ({ product }) => {
             <strong>ფასი:</strong>
           </span>
           &nbsp;
-          <span>{product.price}₾</span>
+          <span>
+            1{product.sizeUnit}-{product.price}₾
+          </span>
         </div>
 
         <div className="item--actions">
@@ -132,10 +134,12 @@ const ItemToChooseCard: React.FC<ItemToChooseCardT> = ({ product }) => {
               <strong>ზომა:</strong>
             </span>
             &nbsp;
-            <select name="size" value={size.size} onChange={onSizeChange}>
+            <select name="size" value={size.size || ""} onChange={onSizeChange}>
               {product.sizes.map((size) => (
-                <option value={size} key={size}>
+                <option value={size || ""} key={size}>
                   {size}
+                  &nbsp;
+                  {product.sizeUnit}
                 </option>
               ))}
             </select>

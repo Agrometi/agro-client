@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ShoppingLayout = styled.div`
-  min-height: 80svh;
+  min-height: 100svh;
 
   .all-products__body {
     padding: 2rem 1rem;

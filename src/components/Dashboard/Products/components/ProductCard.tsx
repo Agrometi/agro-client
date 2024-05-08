@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import { PATHS, DYNAMIC_ROUTES } from "@/config/paths";
 import { useAppUIContext } from "@/Providers";
+import { PATHS, DYNAMIC_ROUTES } from "@/config/paths";
+import { useCheckProductParticipatingCombos } from "@/hooks/api/dashboard/products";
 
 import * as Styled from "./productCard.styled";
-import { LineClamp, Button } from "@/components/Layouts";
+import { LineClamp, Button, RelativeSpinner } from "@/components/Layouts";
 import { DeleteIcon, EditIcon } from "@/components/Layouts/Icons";
 
 import { ProductT } from "@/interface/db/product.types";
@@ -12,9 +13,21 @@ import { ProductT } from "@/interface/db/product.types";
 type ProductCardT = {
   product: ProductT;
   onDelete: (productId: string) => Promise<void>;
+  setWarning: React.Dispatch<
+    React.SetStateAction<{
+      warning: boolean;
+      combos: Array<{ _id: string; title: string }>;
+      productTitle: string;
+      productId: string;
+    }>
+  >;
 };
 
-const ProductCard: React.FC<ProductCardT> = ({ product, onDelete }) => {
+const ProductCard: React.FC<ProductCardT> = ({
+  product,
+  onDelete,
+  setWarning,
+}) => {
   const navigate = useNavigate();
 
   const { activateDialog } = useAppUIContext();
@@ -24,14 +37,28 @@ const ProductCard: React.FC<ProductCardT> = ({ product, onDelete }) => {
       state: { product },
     });
 
-  const onStartDelete = () =>
-    activateDialog({
-      target: "პროდუქტის",
-      message: "დარწმუნებული ხართ გსურთ ამ <TARGET> წაშლა ?",
-      onConfirm: () => onDelete(product._id),
-      title: "პროდუქტის წაშლა",
-      type: "danger",
-    });
+  const { check, loading } = useCheckProductParticipatingCombos();
+
+  const onStartDelete = async () => {
+    const combos = await check(product._id);
+
+    if (Array.isArray(combos) && combos.length > 0)
+      setWarning((prev) => ({
+        ...prev,
+        warning: true,
+        combos,
+        productId: product._id,
+        productTitle: product.title,
+      }));
+    else
+      activateDialog({
+        target: "პროდუქტის",
+        message: "დარწმუნებული ხართ გსურთ ამ <TARGET> წაშლა ?",
+        onConfirm: () => onDelete(product._id),
+        title: "პროდუქტის წაშლა",
+        type: "danger",
+      });
+  };
 
   const thumbnail = product.assets.find((asset) => asset?.endsWith(".webp"));
 
@@ -82,6 +109,8 @@ const ProductCard: React.FC<ProductCardT> = ({ product, onDelete }) => {
           </Button>
         </div>
       </div>
+
+      {loading && <RelativeSpinner />}
     </Styled.ProductCard>
   );
 };

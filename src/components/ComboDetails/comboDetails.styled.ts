@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ComboDetails = styled.div`
   width: min(128rem, 100%);
   margin: 0 auto;
-  min-height: 80svh;
+  min-height: 100svh;
   padding: 4rem 1rem;
 
   .gallery-box {
@@ -156,6 +156,8 @@ export const ComboDetails = styled.div`
       margin-top: 2rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      column-gap: 2rem;
+      row-gap: 1rem;
     }
 
     .view-product__btn {

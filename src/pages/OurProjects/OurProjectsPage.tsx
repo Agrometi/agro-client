@@ -13,9 +13,8 @@ const OurProjectsPage: React.FC = () => {
 
       <SuspenseContainer>
         <OurProjects />
+        <Footer />
       </SuspenseContainer>
-
-      <Footer />
     </>
   );
 };

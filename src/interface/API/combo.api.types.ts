@@ -16,6 +16,10 @@ type DeleteComboArgsT = {
   comboId: string;
 };
 
+type DeleteCombosArgsT = {
+  combosIds: Array<string>;
+};
+
 type GetComboArgsT = {
   comboId: string;
 };
@@ -41,6 +45,7 @@ export type {
   GetComboArgsT,
   CreateComboArgsT,
   DeleteComboArgsT,
+  DeleteCombosArgsT,
   UpdateComboArgsT,
   GetAllCombosArgsT,
   GetAllCombosResponseT,
