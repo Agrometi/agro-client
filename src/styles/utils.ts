@@ -44,6 +44,49 @@ const quill = css`
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    p:has(img) {
+      width: max-content;
+      max-width: 100%;
+      height: auto;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
+      margin: 3rem auto;
+      padding: 0 !important;
+      line-height: 1;
+      letter-spacing: 0px;
+
+      img {
+        object-fit: contain;
+        max-width: 100%;
+        height: 100%;
+        margin-bottom: -8px;
+      }
+    }
+
+    p:has(img):has(:nth-child(2)),
+    p:has(img):has(:nth-child(3)) {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem !important;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border-radius: inherit;
+      }
+    }
+
+    p:has(img):has(:nth-child(2)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    p:has(img):has(:nth-child(3)) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `;
 
@@ -81,28 +124,6 @@ export const quillReadOnly = css`
         pointer-events: none !important;
         color: ${({ theme }) => theme.colors.text} !important;
         ${hyphens};
-      }
-
-      p:has(img) {
-        width: max-content;
-        max-width: 100%;
-        height: auto;
-        overflow: hidden;
-        border-radius: 0.5rem;
-        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
-        margin: 3rem auto;
-        padding: 0 !important;
-        line-height: 1;
-        letter-spacing: 0px;
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr);
-
-        img {
-          object-fit: contain;
-          max-width: 100%;
-          height: 100%;
-          margin-bottom: -8px;
-        }
       }
 
       p > span {
@@ -144,6 +165,11 @@ export const quillReadOnly = css`
       h6 {
         margin: 1rem 0;
       }
+
+      img {
+        cursor: pointer;
+        pointer-events: all !important;
+      }
     }
   }
 
@@ -171,20 +197,6 @@ export const quillEdit = css`
     p,
     p > * {
       font-size: ${({ theme }) => theme.fontSize.md};
-    }
-
-    p:has(img) {
-      width: 90%;
-      border-radius: 0.5rem;
-      margin: 3rem auto;
-
-      img {
-        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.4);
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-      }
     }
 
     iframe {

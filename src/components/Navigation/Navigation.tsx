@@ -6,6 +6,12 @@ import { shoppingCartStore } from "@/store/index.ts";
 import useWindowDimension from "@/hooks/utils/useWindowDimension.ts";
 
 import {
+  COMPANY_ADDRESS,
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
+} from "@/config/config.ts";
+
+import {
   PhoneIcon,
   EmailIcon,
   ViberIcon,
@@ -14,7 +20,6 @@ import {
   ShoppingCartIcon,
   BurgerIcon,
 } from "@/components/Layouts/Icons";
-// import { TextField } from "@/components/Layouts";
 import * as Styled from "./navigation.styled.ts";
 
 type NavigationT = {};
@@ -30,6 +35,12 @@ const Navigation: React.FC<NavigationT> = () => {
     if (width > 640 && activeBurgerNav) setActiveBurgerNav(false);
   }, [width]);
 
+  const COMPANY_PHONE_INDEXED = COMPANY_PHONE.replace(/-/g, "")
+    .split(" ")
+    .join("");
+
+  const COMPANY_PHONE_SHORT = COMPANY_PHONE_INDEXED.replace("+995", "");
+
   return (
     <>
       <Styled.NavSocials className="socials-wrapper">
@@ -39,22 +50,22 @@ const Navigation: React.FC<NavigationT> = () => {
               <span className="icon">
                 <LocationIcon />
               </span>
-              <span className="title">ქ. ქუთაისი შარტავას 2/10</span>
+              <span className="title">{COMPANY_ADDRESS}</span>
             </div>
           </li>
 
           <li>
-            <a href="mailto:agroornament@gmail.com">
+            <a href={`mailto:${COMPANY_EMAIL}`}>
               <span className="icon">
                 <EmailIcon />
               </span>
-              <span className="title">agroornament@gmail.com</span>
+              <span className="title">{COMPANY_EMAIL}</span>
             </a>
           </li>
 
           <li>
             <a
-              href="viber://chat?number=555145719"
+              href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
               referrerPolicy="no-referrer"
               target="_blank"
             >
@@ -66,7 +77,7 @@ const Navigation: React.FC<NavigationT> = () => {
 
           <li>
             <a
-              href="https://wa.me/555145719"
+              href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
               referrerPolicy="no-referrer"
               target="_blank"
             >
@@ -153,7 +164,7 @@ const Navigation: React.FC<NavigationT> = () => {
 
           <div className="nav-row__right">
             <PhoneIcon />
-            <span>+995 555 14 57 19</span>
+            <span>{COMPANY_PHONE}</span>
           </div>
         </div>
       </Styled.Navigation>

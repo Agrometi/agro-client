@@ -6,6 +6,7 @@ type CartProductT = {
   _id: string;
   price: number;
   title: string;
+  description: string;
   thumbnail: string;
   productType: "combo" | "product";
   sizeUnit: string;

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 import { quillConfig as quill } from "@/utils";
 
-import { ErrorMessage } from "@/components/Layouts";
+import { ErrorMessage, ModalSlider } from "@/components/Layouts";
 import * as Styled from "./quill.styles";
 
 type QuillEditorT = {
@@ -26,38 +26,77 @@ const QuillEditor: React.FC<QuillEditorT> = ({
     setValue && setValue(value);
   };
 
+  const [sliderImages, setSliderImages] = useState<Array<string>>([]);
+  const [activeSlideIndex, setActiveSlideIndex] = useState<number>(NaN);
+
   useEffect(() => {
-    const quillDoc = document.querySelector(".quill");
+    if (!readonly) return;
 
-    if (!quillDoc) return;
+    const quillEl = document.querySelector(".quill");
+    if (!quillEl) return;
 
-    const imgContainers = quillDoc.querySelectorAll("p:has(img)");
+    const imageElements = quillEl.querySelectorAll("img");
 
-    Array.from(imgContainers).forEach((el) => {
-      if (el.children.length === 1)
-        el.setAttribute("className", "img-container");
-      else if (el.children.length > 1)
-        el.setAttribute("className", "multiple-img-container");
-      // el.setAttribute(
-      //   "style",
-      //   "display:grid;grid-template-columns:repeat(2,1fr)"
-      // );
-    });
-  }, [value]);
+    const imgSources = Array.from(imageElements)
+      .map((imgEl) => imgEl.getAttribute("src") || "")
+      .filter((src) => src !== "");
+
+    setSliderImages(() => [...imgSources]);
+  }, [readonly, value]);
+
+  useEffect(() => {
+    const quillEl = document.querySelector(".quill");
+
+    if (!quillEl) return;
+
+    const imageElements = quillEl.querySelectorAll("img");
+
+    const onImageClick = (e: MouseEvent) => {
+      const target = e.currentTarget as HTMLElement;
+
+      const imgSrc =
+        target.tagName === "IMG" && target.getAttribute("src")
+          ? target.getAttribute("src")
+          : "";
+
+      if (!imgSrc) return;
+
+      const activeImgIndex = sliderImages.findIndex((img) => img === imgSrc);
+      setActiveSlideIndex(activeImgIndex);
+    };
+
+    imageElements.forEach((el) => el.addEventListener("click", onImageClick));
+
+    return () => {
+      imageElements.forEach((el) =>
+        el.removeEventListener("click", onImageClick)
+      );
+    };
+  }, [sliderImages, activeSlideIndex]);
 
   return (
-    <Styled.QuillContainer>
-      <ReactQuill
-        {...quill}
-        id="quill"
-        value={value}
-        onChange={onChange}
-        readOnly={readonly}
-        theme={readonly ? "bubble" : quill.theme}
-      />
+    <>
+      <Styled.QuillContainer>
+        <ReactQuill
+          {...quill}
+          id="quill"
+          value={value}
+          onChange={onChange}
+          readOnly={readonly}
+          theme={readonly ? "bubble" : quill.theme}
+        />
 
-      {hasError && <ErrorMessage message={message || ""} />}
-    </Styled.QuillContainer>
+        {hasError && <ErrorMessage message={message || ""} />}
+      </Styled.QuillContainer>
+
+      {readonly && sliderImages.length > 0 && !isNaN(activeSlideIndex) && (
+        <ModalSlider
+          images={sliderImages}
+          startIndex={activeSlideIndex}
+          onClose={() => setActiveSlideIndex(NaN)}
+        />
+      )}
+    </>
   );
 };
 

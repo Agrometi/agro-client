@@ -36,6 +36,7 @@ export default function useCart() {
       price: product.price!,
       thumbnail: product.assets![0],
       productType: params.productType,
+      description: product.description || "",
     });
   };
 

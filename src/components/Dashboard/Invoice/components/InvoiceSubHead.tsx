@@ -1,3 +1,11 @@
+import {
+  COMPANY_NAME,
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
+  COMPANY_ADDRESS_AND_ZIP,
+  COMPANY_BANK_NUMBER,
+} from "@/config/config";
+
 import styles from "./invoiceStyles.ts";
 import { View, Text } from "@react-pdf/renderer";
 
@@ -23,19 +31,19 @@ const InvoiceSubHead: React.FC<InvoiceSubHeadT> = ({
         <Text
           style={{ ...styles.fontSizeSm, ...styles.normal, ...styles.noto }}
         >
-          შპს აგრო-ორნამენტი
+          {COMPANY_NAME}
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          ქ.ქუთაისი ჟ.შარტავას 10 ს/კ 238775919
+          {COMPANY_ADDRESS_AND_ZIP}
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          ტელ:&nbsp;+995 555-14-57-19
+          ტელ:&nbsp;{COMPANY_PHONE}
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          თიბისი ბანკი:&nbsp;GE42TB7162036050100002
+          თიბისი ბანკი:&nbsp;{COMPANY_BANK_NUMBER}
         </Text>
         <Text style={{ ...styles.noto, ...styles.fontSizeSm }}>
-          ელ-ფოსტა:&nbsp;agroornament@gmail.com
+          ელ-ფოსტა:&nbsp;{COMPANY_EMAIL}
         </Text>
       </View>
 

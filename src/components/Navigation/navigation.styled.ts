@@ -83,7 +83,7 @@ export const Navigation = styled.nav`
     display: flex;
     align-items: center;
     gap: 1rem;
-    min-width: 20rem;
+    min-width: 21rem;
 
     svg {
       font-size: ${({ theme }) => theme.fontSize.xxl};

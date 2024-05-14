@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
-import * as Styled from "./comboSlider.styled";
+import * as Styled from "./modalSlider.styled";
 import { CloseIcon, ArrowLeftIcon } from "@/components/Layouts/Icons";
 
-type ComboSliderT = {
+type ModalSliderT = {
   images: Array<string>;
   startIndex: number;
   onClose: () => void;
-};
+} & React.ComponentProps<"div">;
 
-const ComboSlider: React.FC<ComboSliderT> = ({
+const ModalSlider: React.FC<ModalSliderT> = ({
   images,
   onClose,
   startIndex,
@@ -29,7 +29,7 @@ const ComboSlider: React.FC<ComboSliderT> = ({
   }, [startIndex, images]);
 
   return !isNaN(activeIndex) && activeIndex >= 0 ? (
-    <Styled.ComboSlider>
+    <Styled.ModalSlider>
       <button className="slider__arrow-btn left" onClick={onPreviousSlide}>
         <ArrowLeftIcon />
       </button>
@@ -53,10 +53,10 @@ const ComboSlider: React.FC<ComboSliderT> = ({
       <button onClick={onClose} className="slider__close-btn">
         <CloseIcon />
       </button>
-    </Styled.ComboSlider>
+    </Styled.ModalSlider>
   ) : (
     <></>
   );
 };
 
-export default ComboSlider;
+export default ModalSlider;

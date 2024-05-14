@@ -13,6 +13,7 @@ import {
   LineClamp,
   StandSpinner,
   ErrorMessage,
+  ModalSlider,
 } from "@/components/Layouts";
 
 import {
@@ -22,7 +23,6 @@ import {
   ShoppingCartIcon,
 } from "@/components/Layouts/Icons";
 
-import ComboSlider from "./ComboSlider";
 import * as Styled from "./comboDetails.styled";
 
 type ComboDetailsT = {
@@ -93,7 +93,7 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
     <>
       {status.status === "SUCCESS" && (
         <>
-          <ComboSlider
+          <ModalSlider
             images={data.assets}
             onClose={onCloseSlider}
             startIndex={sliderStartIndex ?? NaN}

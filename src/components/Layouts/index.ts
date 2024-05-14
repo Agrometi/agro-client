@@ -31,6 +31,7 @@ export { default as QuillEditor } from "./QuillEditor/QuillEditor";
 export { default as SearchField } from "./SearchField/SearchField";
 export { default as ArticleCard } from "./ArticleCard/ArticleCard";
 export { default as Article } from "./Article/Article";
+export { default as ModalSlider } from "./ModalSlider/ModalSlider";
 
 // ========== SPINNERS ==========
 export { default as Spinner } from "./Spinner/Spinner";

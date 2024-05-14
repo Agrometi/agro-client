@@ -8,8 +8,15 @@ const AGRO_PASSPORT_KEY = "AGRO_PASSPORT";
 
 const CATEGORIES_PER_PAGE = 42;
 const PRODUCT_PER_PAGE = 25;
-const COMBOS_PER_PAGE = 15;
-const ARTICLES_PER_PAGE = 10;
+const COMBOS_PER_PAGE = 25;
+const ARTICLES_PER_PAGE = 25;
+
+const COMPANY_NAME = "შპს აგრო-ორნამენტი";
+const COMPANY_ADDRESS = "ქ.ქუთაისი ჟ.შარტავას 2/10";
+const COMPANY_ADDRESS_AND_ZIP = "ქ.ქუთაისი ჟ.შარტავას 10 ს/კ 238775919";
+const COMPANY_PHONE = "+995 555-14-57-19";
+const COMPANY_EMAIL = "agroornament@gmail.com";
+const COMPANY_BANK_NUMBER = "GE42TB7162036050100002";
 
 const RouterHistory: RouterHistoryT = {
   navigate: () => {},
@@ -31,4 +38,10 @@ export {
   PRODUCT_PER_PAGE,
   COMBOS_PER_PAGE,
   ARTICLES_PER_PAGE,
+  COMPANY_NAME,
+  COMPANY_ADDRESS_AND_ZIP,
+  COMPANY_ADDRESS,
+  COMPANY_PHONE,
+  COMPANY_EMAIL,
+  COMPANY_BANK_NUMBER,
 };

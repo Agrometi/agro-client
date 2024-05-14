@@ -1,3 +1,5 @@
+import { COMPANY_EMAIL } from "@/config/config";
+
 import * as Styled from "./privacyPolicy.styled";
 import AboutUsHeader from "./components/AboutUsHeader";
 
@@ -317,9 +319,7 @@ const PrivacyPolicy: React.FC = () => {
               დამატებითი ინფორმაციისათვის მოგვმართეთ: &nbsp;
               <u>
                 <strong>
-                  <a href="mailto:agroornament@gmail.com">
-                    agroornament@gmail.com
-                  </a>
+                  <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
                 </strong>
               </u>
             </p>
