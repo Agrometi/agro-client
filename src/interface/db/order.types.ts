@@ -19,20 +19,11 @@ type GroupedOrdersListedOrderCommonProductT = {
   size: string;
   sizeUnit: string;
   quantity: number;
-} & (
-  | { productType: "PRODUCT"; product: GroupedOrdersListedOrderProductT }
-  | {
-      productType: "COMBO";
-      combo: GroupedOrdersListedOrderProductT;
-    }
-);
-
-type GroupedOrdersListedOrderProductT = {
-  _id: string;
+  thumbnail: string;
   title: string;
   price: number;
-  assets: Array<string>;
   description: string;
+  productType: "COMBO" | "PRODUCT";
 };
 
 type GroupedOrdersIdT = { month: number; year: number };

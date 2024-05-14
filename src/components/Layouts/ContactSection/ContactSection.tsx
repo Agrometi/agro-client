@@ -1,4 +1,10 @@
 import {
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
+  COMPANY_ADDRESS_AND_ZIP,
+} from "@/config/config";
+
+import {
   LocationIcon,
   EmailIcon,
   ViberIcon,
@@ -11,6 +17,12 @@ import * as Styled from "./contactSection.styled";
 type ContactT = {};
 
 const ContactSection: React.FC<ContactT> = () => {
+  const COMPANY_PHONE_INDEXED = COMPANY_PHONE.replace(/-/g, "")
+    .split(" ")
+    .join("");
+
+  const COMPANY_PHONE_SHORT = COMPANY_PHONE_INDEXED.replace("+995", "");
+
   return (
     <Styled.ContactSection>
       <div className="contact-box col-2">
@@ -19,32 +31,32 @@ const ContactSection: React.FC<ContactT> = () => {
         </span>
 
         <div className="contact-box__detail">
-          <span>ქ.ქუთაისი შარტავას 2/10 - 4600</span>
+          <span>{COMPANY_ADDRESS_AND_ZIP}</span>
         </div>
       </div>
 
-      <a href="mailto:agroornament@gmail.com" className="contact-box col-2">
+      <a href={`mailto:${COMPANY_EMAIL}`} className="contact-box col-2">
         <span className="contact-box__icon">
           <EmailIcon />
         </span>
 
         <div className="contact-box__detail">
-          <span>agroornament@gmail.com</span>
+          <span>{COMPANY_EMAIL}</span>
         </div>
       </a>
 
-      <a href="tel:+995555145719" className="contact-box col-2">
+      <a href={`tel:${COMPANY_PHONE_INDEXED}`} className="contact-box col-2">
         <span className="contact-box__icon">
           <PhoneIcon />
         </span>
 
         <div className="contact-box__detail">
-          <span>+995 555 14 57 19</span>
+          <span>{COMPANY_PHONE}</span>
         </div>
       </a>
 
       <a
-        href="https://wa.me/555145719"
+        href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
         referrerPolicy="no-referrer"
         target="_blank"
         className="contact-box col-2"
@@ -59,7 +71,7 @@ const ContactSection: React.FC<ContactT> = () => {
       </a>
 
       <a
-        href="viber://chat?number=555145719"
+        href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
         referrerPolicy="no-referrer"
         target="_blank"
         className="contact-box col-2"
@@ -87,26 +99,6 @@ const ContactSection: React.FC<ContactT> = () => {
           <span>Facebook</span>
         </div>
       </a>
-
-      {/* <div className="contact-box col-3">
-        <span className="contact-box__icon">
-          <TwitterIcon />
-        </span>
-
-        <div className="contact-box__detail">
-          <span>Twitter</span>
-        </div>
-      </div>
-
-      <div className="contact-box col-3">
-        <span className="contact-box__icon">
-          <InstagramIcon />
-        </span>
-
-        <div className="contact-box__detail">
-          <span>Instagram</span>
-        </div>
-      </div> */}
     </Styled.ContactSection>
   );
 };

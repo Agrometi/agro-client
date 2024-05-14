@@ -7,7 +7,13 @@ import {
 import { PATHS } from "@/config/paths";
 import { getTimeString } from "@/utils";
 import { useSearchParams } from "@/hooks/utils";
-import getOrderedProductNestedField from "./functions/getOrderedProductNestedField";
+
+import {
+  COMPANY_NAME,
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
+  COMPANY_ADDRESS_AND_ZIP,
+} from "@/config/config";
 
 import * as Styled from "./styles/orderReview.styled";
 import OrderReviewTableItem from "./OrderReviewTableItem";
@@ -27,46 +33,24 @@ const OrderReview: React.FC = () => {
   const onGetInvoice = async () => {
     await onTreeTrunk(data._id, "SUCCESS");
 
-    const products = data.products
-      .filter(
-        (product) =>
-          (product.productType === "COMBO" && product.combo) ||
-          (product.productType === "PRODUCT" && product.product)
-      )
-      .map((product) => {
-        const price = getOrderedProductNestedField(product, "price") as number;
+    const products = data.products.map((product) => {
+      const priceSum =
+        product.productType === "PRODUCT"
+          ? product.quantity * product.price * Number(product.size as string)
+          : product.quantity * product.price;
 
-        const title = getOrderedProductNestedField(product, "title") as string;
-
-        const assets = getOrderedProductNestedField(
-          product,
-          "assets"
-        ) as Array<string>;
-
-        const description = getOrderedProductNestedField(
-          product,
-          "description"
-        ) as string;
-
-        const priceSum =
-          product.productType === "PRODUCT"
-            ? product.quantity * price * Number(product.size as string)
-            : product.quantity * price;
-
-        const thumbnail = assets?.[0];
-
-        return {
-          id: product._id,
-          size: product.size,
-          sizeUnit: product.sizeUnit,
-          quantity: product.quantity,
-          title,
-          price,
-          priceSum,
-          description,
-          thumbnail,
-        };
-      });
+      return {
+        priceSum,
+        id: product._id,
+        size: product.size,
+        sizeUnit: product.sizeUnit,
+        quantity: product.quantity,
+        thumbnail: product.thumbnail,
+        title: product.title,
+        price: product.price,
+        description: product.description,
+      };
+    });
 
     navigate(PATHS.dashboard_generate_invoice_page, {
       state: {
@@ -131,9 +115,10 @@ const OrderReview: React.FC = () => {
               <div className="invoice-sub--head">
                 <div>
                   <p>კომაპანია:</p>
-                  <p>AGRO-ORNAMENT</p>
-                  <p>კომპანიის მისამართი და ZIP კოდი</p>
-                  <p>ტელ. ნომერი</p>
+                  <p>{COMPANY_NAME}</p>
+                  <p>{COMPANY_ADDRESS_AND_ZIP}</p>
+                  <p>ტელ: {COMPANY_PHONE}</p>
+                  <p>ელ-ფოსტა: {COMPANY_EMAIL}</p>
                 </div>
 
                 <div>

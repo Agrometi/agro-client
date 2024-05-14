@@ -43,12 +43,15 @@ const useProductStore = create<OrderStoreT>()(
           set(() => ({ createStatus: getStatus("PENDING") }));
 
           const products = params.products.map((product) => ({
-            quantity: product.size.selectedCount,
             productType: product.productType.toLocaleUpperCase().trim(),
-            product: product.productType === "product" ? product._id : "",
-            combo: product.productType === "product" ? "" : product._id,
+            quantity: product.size.selectedCount,
             size: product.productType === "product" ? product.size.size : "",
             sizeUnit: product.sizeUnit,
+            title: product.title,
+            price: product.price,
+            thumbnail: product.thumbnail,
+            productId: product._id,
+            description: product.description,
           }));
 
           const totalPrice = params.products.reduce(

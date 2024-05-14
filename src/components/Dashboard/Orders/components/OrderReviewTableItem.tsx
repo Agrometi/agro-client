@@ -1,4 +1,3 @@
-import getOrderedProductNestedField from "./functions/getOrderedProductNestedField";
 import { GroupedOrdersListedOrderCommonProductT } from "@/interface/db/order.types";
 
 type OrderReviewTableItemT = {
@@ -6,43 +5,25 @@ type OrderReviewTableItemT = {
 };
 
 const OrderReviewTableItem: React.FC<OrderReviewTableItemT> = ({ product }) => {
-  const checkIsDeletedProduct = (
-    product: GroupedOrdersListedOrderCommonProductT
-  ): boolean =>
-    (product.productType === "PRODUCT" && !product.product) ||
-    (product.productType === "COMBO" && !product.combo);
-
-  const isDeletedProduct = checkIsDeletedProduct(product);
-
-  const priceSum = isDeletedProduct
-    ? 0
-    : product.productType === "PRODUCT"
-    ? product.quantity *
-      (getOrderedProductNestedField(product, "price") as number) *
-      Number(product.size as string)
-    : product.quantity *
-      (getOrderedProductNestedField(product, "price") as number);
+  const priceSum =
+    product.productType === "PRODUCT"
+      ? product.quantity * product.price * Number(product.size as string)
+      : product.quantity * product.price;
 
   const productPriceString = `${
     product.sizeUnit ? `1${product.sizeUnit} -` : ""
-  } ${getOrderedProductNestedField(product, "price")}₾`;
-
-  const productTitle = isDeletedProduct ? (
-    <span style={{ color: "red", fontWeight: "600" }}>წაშლილი პროდუქტი</span>
-  ) : (
-    getOrderedProductNestedField(product, "title")
-  );
+  } ${product.price}₾`;
 
   return (
     <div className="invoice-body__grid-col">
-      <p>{productTitle}</p>
+      <p>{product.title}</p>
       <p>
         {product.productType === "COMBO" ? <>&mdash;</> : product.size}&nbsp;
         {product.sizeUnit}
       </p>
       <p>{product.quantity}</p>
-      <p>{isDeletedProduct ? <>&mdash;</> : productPriceString}</p>
-      <p>{isDeletedProduct ? <>&mdash;</> : priceSum + "₾"}</p>
+      <p>{productPriceString}</p>
+      <p>{priceSum + "₾"}</p>
     </div>
   );
 };

@@ -12,20 +12,12 @@ import {
 type ExpandedOrderItemT = {
   order: Omit<GroupedOrdersListedOrderT, "products">;
   product: GroupedOrdersListedOrderCommonProductT;
-  isDeleted: boolean;
 };
 
 const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
   order,
   product,
-  isDeleted,
 }) => {
-  const productInfo = isDeleted
-    ? { assets: [], title: "", price: "", _id: "" }
-    : product.productType === "COMBO"
-    ? product.combo
-    : product.product;
-
   const { setParam, getParam } = useSearchParams();
 
   const onReviewOrder = () => setParam("review-order", order._id);
@@ -34,17 +26,13 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
   return (
     <Styled.OrderItem className={isOrderInReview ? "active" : ""}>
       <figure className="order-fig">
-        {!isDeleted ? (
-          <img
-            src={productInfo.assets[0]}
-            alt={productInfo.title}
-            title={productInfo.title}
-            width="200"
-            loading="lazy"
-          />
-        ) : (
-          <p>წაშლილი პროდუქტი</p>
-        )}
+        <img
+          src={product.thumbnail}
+          alt={product.title}
+          title={product.title}
+          width="200"
+          loading="lazy"
+        />
       </figure>
 
       <div className="order-details">
@@ -71,13 +59,13 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
           <div className="grid-box__sub">
             <span>პროდუქტი:</span>
             &nbsp;
-            {isDeleted ? <>&mdash;</> : <span>{productInfo.title}</span>}
+            <span>{product.title}</span>
           </div>
 
           <div className="grid-box__sub">
             <span>პროდუქტის ფასი:</span>
             &nbsp;
-            <span>{productInfo.price}</span>
+            <span>{product.price}</span>
           </div>
         </div>
 
@@ -85,7 +73,7 @@ const ExpandedOrderItem: React.FC<ExpandedOrderItemT> = ({
           <div className="grid-box__sub">
             <span>პროდუქტის ზომა:</span>
             &nbsp;
-            {product.productType === "COMBO" || isDeleted || !product.size ? (
+            {product.productType === "COMBO" || !product.size ? (
               <>&mdash;</>
             ) : (
               <span>{product.size}</span>

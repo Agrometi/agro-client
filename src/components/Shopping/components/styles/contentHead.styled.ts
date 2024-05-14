@@ -40,6 +40,11 @@ export const ContentHead = styled.div`
         align-items: center;
         gap: 1rem;
         font-size: ${({ theme }) => theme.fontSize.base};
+
+        span {
+          display: flex;
+          align-items: center;
+        }
       }
 
       .sort-btn__content svg {
