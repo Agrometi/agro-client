@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { PATHS } from "@/config/paths";
 import FilterProvider from "@/Providers/FilterProvider";
 
+import { Header } from "@/components/Layouts";
 import Filter from "./components/Filter";
 import * as Styled from "./shoppingLayout.styled";
 import ContentHead from "./components/ContentHead";
@@ -30,6 +31,8 @@ const AllProductsLayout: React.FC<AllProductsLayoutT> = ({ children }) => {
 
   return (
     <Styled.ShoppingLayout>
+      <Header />
+
       <ShoppingHeader />
 
       <div

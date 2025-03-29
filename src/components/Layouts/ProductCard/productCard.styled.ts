@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductCard = styled.div`
+export const ProductCard = styled.li`
   display: flex;
   flex-direction: column;
   gap: 9rem;

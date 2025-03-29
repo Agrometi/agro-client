@@ -4,7 +4,7 @@ import { AxiosResponse } from "axios";
 
 import { logger } from "@/utils";
 import { getStatus, createSelectors } from "./helpers";
-import { axiosPrivateQuery } from "@/services/axios";
+import { axiosPrivateQuery, axiosPublicQuery } from "@/services/axios";
 
 import {
   AboutUsStateT,
@@ -41,7 +41,7 @@ const useAboutUsStore = create<AboutUsStoreT>()(
         set(() => ({ status: getStatus("PENDING") }));
 
         const { data }: AxiosResponse<{ body: string }> =
-          await axiosPrivateQuery.get("/about-us");
+          await axiosPublicQuery.get("/about-us");
 
         set(() => ({
           status: getStatus("SUCCESS"),

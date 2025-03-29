@@ -134,6 +134,7 @@ export const quillReadOnly = css`
         background-color: ${({ theme }) => theme.colors.gray};
         color: ${({ theme }) => theme.colors.gray_dark};
         width: max-content;
+        max-width: 100%;
         display: inline-block;
         padding: 0.3rem;
         padding-left: 0.5rem;

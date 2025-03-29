@@ -32,6 +32,7 @@ export { default as SearchField } from "./SearchField/SearchField";
 export { default as ArticleCard } from "./ArticleCard/ArticleCard";
 export { default as Article } from "./Article/Article";
 export { default as ModalSlider } from "./ModalSlider/ModalSlider";
+export { default as Header } from "./Header/Header";
 
 // ========== SPINNERS ==========
 export { default as Spinner } from "./Spinner/Spinner";

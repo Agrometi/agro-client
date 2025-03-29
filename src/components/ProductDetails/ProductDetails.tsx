@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import { PATHS } from "@/config/paths";
+import Helmet from "@/SEO/Helmet";
+import generateProductSchema from "@/SEO/product-schema";
+import { PATHS, DYNAMIC_ROUTES } from "@/config/paths";
+
 import { useCart } from "@/hooks/utils";
 import { useSizeChange } from "@/hooks/utils";
 import { useGetProductQuery } from "@/hooks/api/products";
@@ -10,6 +13,7 @@ import { useDeleteProductQuery } from "@/hooks/api/dashboard/products";
 import {
   Button,
   Counter,
+  Header,
   ErrorMessage,
   StandSpinner,
   RelativeSpinner,
@@ -20,6 +24,7 @@ import { DeleteIcon, EditIcon } from "@/components/Layouts/Icons";
 import * as Styled from "./productDetails.styled";
 import ProductSlider from "./components/ProductSlider";
 import RelatedProducts from "./components/RelatedProducts";
+import Unknown from "@/components/Unknown/Unknown";
 
 type ProductDetailsT = {
   isOnDashboard?: boolean;
@@ -71,104 +76,130 @@ const ProductDetails: React.FC<ProductDetailsT> = ({ isOnDashboard }) => {
       quantity: size.selectedCount,
     });
 
-  const hasError = status.error || deleteStatus.error;
   const errorMessage = status.message || deleteStatus.message;
 
   const priceSum = size.size * data.price * size.selectedCount;
 
   return (
-    <Styled.ProductDetails>
+    <>
       {status.status === "SUCCESS" && (
-        <div className="details-wrapper">
-          <ProductSlider assets={data.assets} />
+        <Helmet
+          schema={generateProductSchema({
+            name: data.title,
+            description: data.description,
+            price: data.price,
+            url: window.location.href,
+            image: data.assets[0],
+          })}
+          title={`Agrometi | პროდუქტები | ${data.title}`}
+          canonical={DYNAMIC_ROUTES.product_page(data._id)}
+        />
+      )}
 
-          <div className="details">
-            <p className="details-title">{data.title}</p>
+      <Header />
 
-            <div className="details-category">
-              <span>კატეგორია:</span>
-              &nbsp;
-              <span>{data.category.title}</span>
-            </div>
+      <Styled.ProductDetails>
+        {status.status === "SUCCESS" && (
+          <div className="details-wrapper">
+            <ProductSlider assets={data.assets} alt={data.title} />
 
-            <p className="details-price">
-              <span>ფასი:</span>
-              &nbsp;
-              <span>
-                1&nbsp;{data.sizeUnit}
-                &nbsp;&mdash;&nbsp;{data.price}₾
-              </span>
-            </p>
+            <div className="details">
+              <h2 className="details-title">{data.title}</h2>
 
-            <p className="details-description">{data.description}</p>
-
-            <div className="details-actions">
-              <div className="details-actions__size">
-                <label>ზომა:</label>
+              <div className="details-category">
+                <span>კატეგორია:</span>
                 &nbsp;
-                <select name="size" onChange={onSizeChange}>
-                  {data.sizes.map((size) => (
-                    <option value={size} key={size}>
-                      {size}&nbsp;{data.sizeUnit}
-                    </option>
-                  ))}
-                </select>
-                &nbsp;
-                {/* {size.size && <span>{size.quantity}</span>} */}
+                <span>{data.category.title}</span>
               </div>
 
-              {isOnDashboard ? (
-                <div className="dashboard-actions">
-                  <Button onClick={onEdit}>
-                    <EditIcon />
-                  </Button>
+              <p className="details-price">
+                <span>ფასი:</span>
+                &nbsp;
+                <span>
+                  1&nbsp;{data.sizeUnit}
+                  &nbsp;&mdash;&nbsp;{data.price}₾
+                </span>
+              </p>
 
-                  <Button show="danger" onClick={onStartDelete}>
-                    <DeleteIcon />
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <div className="details-actions__quantity">
-                    <label>რაოდენობა:</label>
-                    &nbsp;
-                    <Counter
-                      value={size.selectedCount}
-                      onChangeCount={onQuantityChange}
-                      onDecreaseCount={onDecreaseQuantity}
-                      onIncreaseCount={onIncreaseQuantity}
-                    />
-                  </div>
+              <p className="details-description">{data.description}</p>
 
-                  {!isNaN(priceSum) && (
-                    <div className="details-actions__total-price">
-                      {priceSum}₾
-                    </div>
-                  )}
-
-                  <Button
-                    className="details-actions__add-btn"
-                    show="secondary"
-                    onClick={onAddToCart}
+              <div className="details-actions">
+                <div className="details-actions__size">
+                  <label>ზომა:</label>
+                  &nbsp;
+                  <select
+                    name="size"
+                    onChange={onSizeChange}
+                    aria-label="აირჩიეთ პროდუქტის რაოდენობა"
                   >
-                    დამატება
-                  </Button>
-                </>
-              )}
+                    {data.sizes.map((size) => (
+                      <option value={size} key={size}>
+                        {size}&nbsp;{data.sizeUnit}
+                      </option>
+                    ))}
+                  </select>
+                  &nbsp;
+                  {/* {size.size && <span>{size.quantity}</span>} */}
+                </div>
+
+                {isOnDashboard ? (
+                  <div className="dashboard-actions">
+                    <Button onClick={onEdit}>
+                      <EditIcon />
+                    </Button>
+
+                    <Button show="danger" onClick={onStartDelete}>
+                      <DeleteIcon />
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="details-actions__quantity">
+                      <label>რაოდენობა:</label>
+                      &nbsp;
+                      <Counter
+                        value={size.selectedCount}
+                        onChangeCount={onQuantityChange}
+                        onDecreaseCount={onDecreaseQuantity}
+                        onIncreaseCount={onIncreaseQuantity}
+                      />
+                    </div>
+
+                    {!isNaN(priceSum) && (
+                      <div className="details-actions__total-price">
+                        {priceSum}₾
+                      </div>
+                    )}
+
+                    <Button
+                      className="details-actions__add-btn"
+                      show="secondary"
+                      onClick={onAddToCart}
+                    >
+                      დამატება
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {status.loading && <RelativeSpinner />}
-      {deleteStatus.loading && <StandSpinner />}
+        {status.status === "FAIL" && <Unknown fixed={false} />}
 
-      {hasError && <ErrorMessage message={errorMessage} />}
+        {status.loading && <RelativeSpinner />}
+        {deleteStatus.loading && <StandSpinner />}
 
-      {!isOnDashboard && (
-        <RelatedProducts productId={data._id} categoryId={data.category._id} />
-      )}
-    </Styled.ProductDetails>
+        {deleteStatus.error && <ErrorMessage message={errorMessage} />}
+
+        {!isOnDashboard && (
+          <RelatedProducts
+            productId={data._id}
+            categoryId={data.category._id}
+          />
+        )}
+      </Styled.ProductDetails>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import { DeleteIcon, EditIcon } from "@/components/Layouts/Icons";
 import { ComboT } from "@/interface/db/combo.types";
 
 type ComboCardT = {
+  as?: string;
   combo: ComboT;
   showActions?: boolean;
   redirectPath: string;
@@ -19,6 +20,7 @@ type ComboCardT = {
 
 const ComboCard: React.FC<ComboCardT> = ({
   combo,
+  as = "li",
   redirectPath,
   onDelete = () => {},
   showActions = true,
@@ -52,15 +54,17 @@ const ComboCard: React.FC<ComboCardT> = ({
   ).length;
 
   return (
-    <Styled.ComboCard className="combos-list__item">
+    <Styled.ComboCard as={as} className="combos-list__item">
       <div className="combo-assets">
         {images.slice(0, hoveredImg ? 6 : 2).map((src) => (
           <img
             key={src}
             src={src}
-            alt={src}
             title={src}
+            alt={combo.title}
             loading="lazy"
+            width="100%"
+            height="100%"
             onMouseOver={() => setHoveredImg(src)}
             className={`combo-card__img ${
               hoveredImg === src ? "hovered-thumbnail" : ""
@@ -72,7 +76,7 @@ const ComboCard: React.FC<ComboCardT> = ({
           <>
             <img
               src={hoveredImg}
-              alt=""
+              alt={combo.title}
               className="combo-card__img hovered"
               onMouseLeave={() => setHoveredImg("")}
             />
@@ -87,7 +91,8 @@ const ComboCard: React.FC<ComboCardT> = ({
       <div className="combo-details">
         <LineClamp
           clamp={2}
-          component="h4"
+          component="h2"
+          sx={{ fontSize: "16px", cursor: "pointer" }}
           text={combo.title}
           onClick={onViewCombo}
         />

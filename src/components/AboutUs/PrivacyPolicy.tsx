@@ -2,10 +2,13 @@ import { COMPANY_EMAIL } from "@/config/config";
 
 import * as Styled from "./privacyPolicy.styled";
 import AboutUsHeader from "./components/AboutUsHeader";
+import { Header } from "@/components/Layouts";
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <Styled.PrivacyPolicy>
+      <Header />
+
       <AboutUsHeader />
 
       <div className="policy__body">

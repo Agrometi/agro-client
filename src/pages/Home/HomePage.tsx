@@ -1,10 +1,13 @@
 import { lazy } from "react";
 
+import { PATHS } from "@/config/paths";
+import Helmet from "@/SEO/Helmet";
+
 import { useScrollTop } from "@/hooks/utils";
 
+import Footer from "@/components/Footer/Footer";
 import { SuspenseContainer } from "@/components/Layouts";
 import Navigation from "@/components/Navigation/Navigation";
-import Footer from "@/components/Footer/Footer";
 
 const Home = lazy(() => import("@/components/Home/Home"));
 
@@ -13,6 +16,10 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      <Helmet
+        title="Agrometi - თანამედროვე სათბურების მშენებლობა და აგრო ინოვაციები"
+        canonical={PATHS.home_page}
+      />
       <Navigation />
       <SuspenseContainer>
         <Home />

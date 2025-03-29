@@ -22,7 +22,7 @@ const ArticleHead: React.FC<ArticleHeadT> = ({ article, root, onDelete }) => {
 
       {root === "dashboard" && (
         <>
-          <button onClick={handleDelete}>
+          <button onClick={handleDelete} style={{ fontSize: "25px" }}>
             <DeleteIcon />
           </button>
 

@@ -8,10 +8,10 @@ const Hero: React.FC = () => {
     <Styled.Hero>
       <figure className="hero-fig">
         <img
-          src="https://images.unsplash.com/photo-1625758476104-f2ed6c81248f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
-          title=""
           width="100%"
+          height="50vh"
+          alt="seeding scene"
+          src="/assets/hero.webp"
         />
       </figure>
 

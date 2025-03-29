@@ -26,14 +26,16 @@ export default function useCreateArticleQuery(articleId?: string) {
   const updateArticle = blogStore.use.updateArticle();
 
   const onCreate = form.handleSubmit(async (values) => {
+    const body = attachAltAttributeToImages(values.body, values.title);
+
     try {
-      if (!isUpdating) await createArticle(values);
+      if (!isUpdating) await createArticle({ ...values, body });
       else {
         if (!articleId) return;
 
         await updateArticle({
+          body,
           articleId,
-          body: values.body,
           title: values.title,
           category: values.category,
         });
@@ -47,4 +49,13 @@ export default function useCreateArticleQuery(articleId?: string) {
   });
 
   return { form, onCreate, onStartUpdate, status };
+}
+
+function attachAltAttributeToImages(body: string, alt: string): string {
+  const parsedDOM = new DOMParser().parseFromString(body, "text/html");
+
+  const images = parsedDOM.querySelectorAll("img");
+  images.forEach((img) => img.setAttribute("alt", alt));
+
+  return parsedDOM.body.innerHTML;
 }

@@ -16,13 +16,26 @@ const Counter: React.FC<CounterT> = ({
 }) => {
   return (
     <Styled.Counter>
-      <button onClick={onDecreaseCount}>
+      <button
+        onClick={onDecreaseCount}
+        title="შეამცირეთ რაოდენობა 1 ერთეულით"
+        aria-label="შეამცირეთ რაოდენობა 1 ერთეულით"
+      >
         <MinusIcon />
       </button>
 
-      <input type="number" value={value} onChange={onChangeCount} />
+      <input
+        type="number"
+        value={value}
+        onChange={onChangeCount}
+        aria-label="პროდუქტის რაოდენობა"
+      />
 
-      <button onClick={onIncreaseCount}>
+      <button
+        onClick={onIncreaseCount}
+        title="გაზარდეთ რაოდენობა 1 ერთეულით"
+        aria-label="გაზარდეთ რაოდენობა 1 ერთეულით"
+      >
         <PlusIcon />
       </button>
     </Styled.Counter>

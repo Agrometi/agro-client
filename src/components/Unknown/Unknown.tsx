@@ -1,14 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import * as Styled from "./unknown.styled";
+import { PATHS } from "@/config/paths";
 
-const Unknown: React.FC = () => {
+type UnknownPropsT = {
+  fixed?: boolean;
+};
+
+const Unknown: React.FC<UnknownPropsT> = ({ fixed = true }) => {
+  const navigate = useNavigate();
+
   return (
-    <Styled.Unknown>
+    <Styled.Unknown $fixed={fixed}>
       <div>
         <span>404</span>
 
-        <p>Page Not Found !</p>
+        <p>გვერდი არ არსებობს !</p>
 
-        <button>Return To Main Page</button>
+        <button onClick={() => navigate(PATHS.home_page)}>
+          მთავარ გვერდზე დაბრუნება
+        </button>
       </div>
     </Styled.Unknown>
   );

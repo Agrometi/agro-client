@@ -2,6 +2,7 @@ import { useGetAllArticlesQuery } from "@/hooks/api/blog";
 import { useSearchField } from "@/hooks/utils";
 
 import {
+  Header,
   InfiniteScroll,
   ArticleCard,
   SearchField,
@@ -19,6 +20,8 @@ const Blog: React.FC = () => {
 
   return (
     <Styled.Blog>
+      <Header />
+
       <div className="articles-head">
         <SearchField value={search} onChange={setSearch} />
       </div>

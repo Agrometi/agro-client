@@ -20,7 +20,7 @@ export default function useRedirectUser() {
         const { isAuthenticatedUser, decodedUser } = await check();
 
         if (!isAuthenticatedUser || decodedUser?.role !== ADMINISTRATOR_ROLE)
-          navigate(PATHS.root_page);
+          navigate(PATHS.home_page);
       } catch (error) {
         logger(error);
       } finally {
