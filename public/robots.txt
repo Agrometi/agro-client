@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /dashboard/
 Disallow: /cart/
-Sitemap: http://localhost:4000/api/v1/sitemap
+Sitemap: https://agro-server-607m.onrender.com/api/v1/sitemap
