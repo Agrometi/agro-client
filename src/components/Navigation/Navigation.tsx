@@ -45,7 +45,7 @@ const Navigation: React.FC<NavigationT> = () => {
     <>
       <Styled.NavSocials className="socials-wrapper">
         <ul className="socials-list">
-          <li>
+          <li title="ლოკაცია">
             <div>
               <span className="icon">
                 <LocationIcon />
@@ -55,7 +55,11 @@ const Navigation: React.FC<NavigationT> = () => {
           </li>
 
           <li>
-            <a href={`mailto:${COMPANY_EMAIL}`}>
+            <a
+              href={`mailto:${COMPANY_EMAIL}`}
+              title="ელ-ფოსტის გაგზავნა Agrometi-სთვის"
+              aria-label="მიწერეთ ელ-ფოსტა Agrometi-ს"
+            >
               <span className="icon">
                 <EmailIcon />
               </span>
@@ -65,9 +69,11 @@ const Navigation: React.FC<NavigationT> = () => {
 
           <li>
             <a
-              href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
-              referrerPolicy="no-referrer"
               target="_blank"
+              referrerPolicy="no-referrer"
+              title="დაურეკეთ Agrometi-ს viber-ის საშუალებით"
+              aria-label="დაურეკეთ Agrometi-ს viber-ის საშუალებით"
+              href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
             >
               <span className="icon">
                 <ViberIcon />
@@ -77,9 +83,11 @@ const Navigation: React.FC<NavigationT> = () => {
 
           <li>
             <a
-              href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
-              referrerPolicy="no-referrer"
               target="_blank"
+              referrerPolicy="no-referrer"
+              title="დაურეკეთ Agrometi-ს WhatsApp-ის საშუალებით"
+              aria-label="დაურეკეთ Agrometi-ს WhatsApp-ის საშუალებით"
+              href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
             >
               <span className="icon">
                 <WhatsUpIcon />
@@ -93,7 +101,13 @@ const Navigation: React.FC<NavigationT> = () => {
         <div className="nav-row">
           <div className="nav-row__left">
             <Link to={PATHS.home_page} className="logo-link">
-              <img src="/assets/logo-small.webp" alt="" width="35" />
+              <img
+                src="/assets/logo-small.webp"
+                alt="Agrometi logo"
+                title="go to main page"
+                width={35}
+                height={35}
+              />
             </Link>
           </div>
 
@@ -156,13 +170,22 @@ const Navigation: React.FC<NavigationT> = () => {
               </li>
             </ul>
 
-            <Link to={PATHS.shopping_cart_page} className="cart-btn">
+            <Link
+              to={PATHS.shopping_cart_page}
+              className="cart-btn"
+              title="ნახეთ სავაჭრო კალათა"
+              aria-label="ნახეთ სავაჭრო კალათა"
+            >
               {productsCount > 0 && <span>{productsCount}</span>}
               <ShoppingCartIcon />
             </Link>
           </div>
 
-          <div className="nav-row__right">
+          <div
+            className="nav-row__right"
+            aria-label="Agrometi მობ.ნომერი"
+            title="Agrometi მობ.ნომერი"
+          >
             <PhoneIcon />
             <span>{COMPANY_PHONE}</span>
           </div>

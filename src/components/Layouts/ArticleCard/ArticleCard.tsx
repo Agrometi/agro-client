@@ -98,7 +98,7 @@ const ArticleCard: React.FC<ArticleCardT> = ({
         </div>
       )}
 
-      <LineClamp component="h3" clamp={2} text={article.title} />
+      <LineClamp component="h2" clamp={2} text={article.title} />
 
       <div className="card-description__wrapper">
         <LineClamp clamp={thumbnail ? 5 : 13} text={description} />

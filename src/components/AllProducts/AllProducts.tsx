@@ -21,7 +21,7 @@ const AllProducts: React.FC = () => {
         showLastMessage={status.status === "SUCCESS"}
       >
         {data.map((product) => (
-          <ProductCard key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} as="div" />
         ))}
       </InfiniteScroll>
 

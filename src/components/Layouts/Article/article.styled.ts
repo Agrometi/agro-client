@@ -7,6 +7,7 @@ export const Article = styled.div`
   margin: 0 auto;
   padding: 2rem 3rem;
   min-height: 80svh;
+  position: relative;
 
   .article-title {
     font-size: ${({ theme }) => theme.fontSize.h3};

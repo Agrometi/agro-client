@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       <SubmitButton />
 
       <Link
-        to={PATHS.root_page}
+        to={PATHS.home_page}
         style={{
           color: "royalblue",
           textAlign: "center",

@@ -5,10 +5,12 @@ export const ProductCard = styled.div`
   flex-direction: column;
   gap: 2.5rem;
   position: relative;
+  height: 45rem;
 
   .card-fig {
     width: 100%;
     height: 20rem;
+    min-height: 20rem;
     padding: 0 3rem;
     overflow: hidden;
 
@@ -26,6 +28,7 @@ export const ProductCard = styled.div`
     flex-direction: column;
     gap: 1rem;
     justify-content: space-between;
+    height: 100%;
 
     span[data-line-clamp] {
       font-weight: 600;
@@ -65,6 +68,10 @@ export const ProductCard = styled.div`
 
       button {
         width: calc(50% - 1rem);
+      }
+
+      &.footer {
+        margin-top: auto;
       }
     }
   }

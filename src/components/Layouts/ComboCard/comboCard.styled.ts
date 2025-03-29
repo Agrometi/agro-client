@@ -8,7 +8,7 @@ const animatePointerEvents = keyframes`
   }
 `;
 
-export const ComboCard = styled.div`
+export const ComboCard = styled.li`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.gray};
   border-radius: 0.5rem;

@@ -30,7 +30,6 @@ const Articles: React.FC = () => {
   const currentCategory = getParam("category");
 
   const onCategoryChange = (value: string) => setParam("category", value);
-
   useEffect(() => {
     if (!currentCategory) setParam("category", categoryOptions[0].value);
   }, []);

@@ -50,7 +50,7 @@ export const ArticleCard = styled(Link)`
     }
   }
 
-  h3[data-line-clamp] {
+  h2[data-line-clamp] {
     font-size: ${({ theme }) => theme.fontSize.md};
     color: ${({ theme }) => theme.colors.gray_dark};
   }

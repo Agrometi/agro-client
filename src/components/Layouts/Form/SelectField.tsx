@@ -73,11 +73,17 @@ const SelectField: React.FC<SelectFieldT> = ({
           />
 
           {openDropdown && enteredValue ? (
-            <button onClick={onClean}>
+            <button
+              onClick={onClean}
+              aria-label="ჩამოსაშლელი სარჩევის ინდიკატორი"
+            >
               <CloseIcon />
             </button>
           ) : (
-            <button onClick={onOpenDropdown}>
+            <button
+              onClick={onOpenDropdown}
+              aria-label="ჩამოსაშლელი სარჩევის ინდიკატორი"
+            >
               <ArrowTriangleIcon />
             </button>
           )}

@@ -40,27 +40,6 @@ const ArticleForm: React.FC = () => {
     });
   }, [article]);
 
-  const body = form.getValues("body");
-
-  // lazy load images in quill editor
-  useEffect(() => {
-    const quill = document.querySelector(".ql-container.ql-snow");
-    const timeoutId = setTimeout(() => {
-      if (!quill) return;
-
-      const images = Array.from(quill.querySelectorAll("img"));
-
-      if (images.length > 0)
-        images.forEach((image) => {
-          image.setAttribute("loading", "lazy");
-        });
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [body]);
-
   return (
     <Styled.ArticleForm>
       <div className="editor-wrapper">

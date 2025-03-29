@@ -23,6 +23,7 @@ const AllCombos: React.FC = () => {
       >
         {data.map((combo) => (
           <ComboCard
+            as="div"
             combo={combo}
             key={combo._id}
             showActions={false}

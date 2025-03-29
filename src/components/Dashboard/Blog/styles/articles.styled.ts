@@ -58,7 +58,7 @@ export const Articles = styled.section`
   .articles-list .infinite-scroll-component {
     padding: 0.5rem 3rem 2rem 3rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(34rem, 1fr));
+    grid-template-columns: repeat(auto-fit, 34rem);
     gap: 3rem;
 
     [data-article-card] {

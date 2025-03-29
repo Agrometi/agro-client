@@ -8,6 +8,7 @@ import * as Styled from "./productSlider.styled";
 import { PlayIcon } from "@/components/Layouts/Icons";
 
 type ProductSliderT = {
+  alt: string;
   assets: Array<string>;
 };
 
@@ -23,7 +24,7 @@ const responsive = {
   },
 };
 
-const ProductSlider: React.FC<ProductSliderT> = ({ assets }) => {
+const ProductSlider: React.FC<ProductSliderT> = ({ assets, alt }) => {
   const [activeAsset, setActiveAsset] = useState("");
 
   const onChangeAsset = (src: string) => setActiveAsset(src);
@@ -39,16 +40,17 @@ const ProductSlider: React.FC<ProductSliderT> = ({ assets }) => {
           <ReactImageMagnify
             {...{
               smallImage: {
-                width: 550,
-                height: 400,
+                width: 300,
+                height: 300,
                 src: activeAsset,
                 isFluidWidth: true,
-                alt: "Wristwatch by Ted Baker London",
+                alt: alt,
               },
               largeImage: {
                 width: 800,
                 height: 800,
                 src: activeAsset,
+                alt: alt,
               },
             }}
             enlargedImagePosition="over"
@@ -77,7 +79,7 @@ const ProductSlider: React.FC<ProductSliderT> = ({ assets }) => {
             }`}
           >
             {asset.endsWith(".webp") ? (
-              <img src={asset} alt="" />
+              <img src={asset} alt={alt} width="100%" height="100%" />
             ) : (
               <>
                 <PlayIcon />

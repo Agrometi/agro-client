@@ -1,17 +1,9 @@
 import * as Pages from "@/pages";
 import { PATHS } from "@/config/paths";
 import { RouteT } from "@/interface/config.types";
-import { Navigate } from "react-router-dom";
 
 const Routes: Array<RouteT> = [
   // ========== HOME ==========
-  {
-    path: PATHS.root_page,
-    title: "root-page",
-    element: <Navigate to={PATHS.home_page} />,
-    children: [],
-  },
-
   {
     path: PATHS.home_page,
     title: "home-page",

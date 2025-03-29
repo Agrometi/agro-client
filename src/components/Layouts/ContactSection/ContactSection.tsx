@@ -35,7 +35,12 @@ const ContactSection: React.FC<ContactT> = () => {
         </div>
       </div>
 
-      <a href={`mailto:${COMPANY_EMAIL}`} className="contact-box col-2">
+      <a
+        href={`mailto:${COMPANY_EMAIL}`}
+        className="contact-box col-2"
+        title="ელ-ფოსტის გაგზავნა Agrometi-სთვის"
+        aria-label="მიწერეთ ელ-ფოსტა Agrometi-ს"
+      >
         <span className="contact-box__icon">
           <EmailIcon />
         </span>
@@ -45,7 +50,12 @@ const ContactSection: React.FC<ContactT> = () => {
         </div>
       </a>
 
-      <a href={`tel:${COMPANY_PHONE_INDEXED}`} className="contact-box col-2">
+      <a
+        href={`tel:${COMPANY_PHONE_INDEXED}`}
+        className="contact-box col-2"
+        title="დაურეკეთ Agrometi-ს მობილურის-ის საშუალებით"
+        aria-label="დაურეკეთ Agrometi-ს მობილურის-ის საშუალებით"
+      >
         <span className="contact-box__icon">
           <PhoneIcon />
         </span>
@@ -56,10 +66,12 @@ const ContactSection: React.FC<ContactT> = () => {
       </a>
 
       <a
-        href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
-        referrerPolicy="no-referrer"
         target="_blank"
+        referrerPolicy="no-referrer"
         className="contact-box col-2"
+        href={`https://wa.me/${COMPANY_PHONE_SHORT}`}
+        title="დაურეკეთ Agrometi-ს WhatsApp-ის საშუალებით"
+        aria-label="დაურეკეთ Agrometi-ს WhatsApp-ის საშუალებით"
       >
         <span className="contact-box__icon">
           <WhatsUpIcon />
@@ -71,10 +83,12 @@ const ContactSection: React.FC<ContactT> = () => {
       </a>
 
       <a
-        href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
-        referrerPolicy="no-referrer"
         target="_blank"
+        referrerPolicy="no-referrer"
         className="contact-box col-2"
+        title="დაურეკეთ Agrometi-ს viber-ის საშუალებით"
+        aria-label="დაურეკეთ Agrometi-ს viber-ის საშუალებით"
+        href={`viber://chat?number=${COMPANY_PHONE_SHORT}`}
       >
         <span className="contact-box__icon">
           <ViberIcon />
@@ -86,10 +100,12 @@ const ContactSection: React.FC<ContactT> = () => {
       </a>
 
       <a
-        className="contact-box col-2"
-        href="https://www.facebook.com/agrometi"
         target="_blank"
         referrerPolicy="no-referrer"
+        className="contact-box col-2"
+        title="ნახეთ Agrometi-ს facebook-ის გვერდი"
+        aria-label="ნახეთ Agrometi-ს facebook-ის გვერდი"
+        href="https://www.facebook.com/agrometi"
       >
         <span className="contact-box__icon">
           <FacebookIcon />

@@ -30,9 +30,9 @@ const CategoryCard: React.FC<CategoryCardT> = ({
   const onStartDelete = () =>
     activateDialog({
       target: "<CATEGORY>",
-      message: "Are you sure you want to delete this category ?",
+      message: "დარწმუნებული ხართ გსურთ ამ კატეგორიის წაშლა ?",
       onConfirm: () => deleteCategoryQuery(category._id),
-      title: "Delete Category",
+      title: "კატეგორიის წაშლა",
       type: "danger",
     });
 

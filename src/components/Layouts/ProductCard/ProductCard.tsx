@@ -10,9 +10,10 @@ import { ProductT } from "@/interface/db/product.types";
 
 type ProductCardT = {
   product: ProductT;
+  as?: string;
 };
 
-const ProductCard: React.FC<ProductCardT> = ({ product }) => {
+const ProductCard: React.FC<ProductCardT> = ({ product, as = "li" }) => {
   const { onAdd } = useCart();
 
   const onAddToCart = () =>
@@ -25,7 +26,7 @@ const ProductCard: React.FC<ProductCardT> = ({ product }) => {
     });
 
   return (
-    <Styled.ProductCard>
+    <Styled.ProductCard as={as}>
       {/* <div className="card-header">
         <button>
           <HeartIcon />
@@ -40,19 +41,21 @@ const ProductCard: React.FC<ProductCardT> = ({ product }) => {
           alt={product.title}
           title={product.title}
           width="100%"
-          height="200"
+          height={200}
         />
       </figure>
 
       <div className="card-details">
         <div className="flex-col">
-          <Link
-            target="_blank"
-            to={DYNAMIC_ROUTES.product_page(product._id)}
-            className="card-title"
-          >
-            {product.title}
-          </Link>
+          <h2>
+            <Link
+              target="_blank"
+              to={DYNAMIC_ROUTES.product_page(product._id)}
+              className="card-title"
+            >
+              {product.title}
+            </Link>
+          </h2>
 
           <div className="card-price--size">
             <span className="card-price">
@@ -70,7 +73,12 @@ const ProductCard: React.FC<ProductCardT> = ({ product }) => {
           </div>
         </div>
 
-        <button className="card-shopping--btn" onClick={onAddToCart}>
+        <button
+          className="card-shopping--btn"
+          onClick={onAddToCart}
+          title="დაამატეთ პროდუქტი კალათაში"
+          aria-label="დაამატეთ პროდუქტი კალათაში"
+        >
           <ShoppingCartIcon />
         </button>
       </div>

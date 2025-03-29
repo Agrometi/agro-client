@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const ProductDetails = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  min-height: 80svh;
   padding: 1rem 1rem 4rem 1rem;
   padding-top: 6rem;
+  position: relative;
 
   .details-wrapper {
     width: min(128rem, 100%);

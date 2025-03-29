@@ -7,8 +7,11 @@ import { useGetComboQuery } from "@/hooks/api/combos";
 import { useAppUIContext } from "@/Providers";
 import { useDeleteComboQuery } from "@/hooks/api/dashboard/combos";
 
+import Helmet from "@/SEO/Helmet";
+
 import {
   Button,
+  Header,
   Counter,
   LineClamp,
   StandSpinner,
@@ -24,6 +27,7 @@ import {
 } from "@/components/Layouts/Icons";
 
 import * as Styled from "./comboDetails.styled";
+import Unknown from "@/components/Unknown/Unknown";
 
 type ComboDetailsT = {
   isOnDashboard?: boolean;
@@ -85,12 +89,17 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
       productType: "combo",
     });
 
-  const hasError = status.error || deleteStatus.error;
   const loading = status.loading || deleteStatus.loading;
   const errorMessage = status.message || deleteStatus.message;
 
   return (
     <>
+      <Header />
+
+      <Helmet
+        title={`Agrometi| ნაკრებები | ${data.title}`}
+        canonical={DYNAMIC_ROUTES.combo_page(data._id)}
+      />
       {status.status === "SUCCESS" && (
         <>
           <ModalSlider
@@ -103,7 +112,14 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
             <div className="gallery-box">
               {data.assets.map((image, index) => (
                 <figure key={image} onClick={() => onOpenSlider(index)}>
-                  <img src={image} alt={image} title={image} loading="eager" />
+                  <img
+                    src={image}
+                    alt={image}
+                    title={image}
+                    loading="eager"
+                    width="100%"
+                    height="100%"
+                  />
                 </figure>
               ))}
             </div>
@@ -111,7 +127,7 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
             <div className="combo-details__wrapper">
               <div className="combo-price">{data.price}₾</div>
 
-              <p className="combo-title">{data.title}</p>
+              <h2 className="combo-title">{data.title}</h2>
 
               <p className="combo-description">{data.description}</p>
 
@@ -154,13 +170,18 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
                     className="contained-products__item"
                   >
                     <figure>
-                      <img src={product.product?.assets?.[0]} alt="" />
+                      <img
+                        src={product.product?.assets?.[0]}
+                        alt={product.product.title}
+                        width="100%"
+                        height="100%"
+                      />
                     </figure>
 
                     <div className="contained-product__item-details">
                       <LineClamp
                         clamp={2}
-                        component="h4"
+                        component="h3"
                         showTitle={true}
                         text={product.product.title}
                       />
@@ -226,9 +247,21 @@ const ComboDetails: React.FC<ComboDetailsT> = ({ isOnDashboard = false }) => {
         </>
       )}
 
+      {status.status === "FAIL" && (
+        <div
+          style={{
+            height: "80svh",
+            position: "relative",
+            width: "100%",
+          }}
+        >
+          <Unknown fixed={false} />
+        </div>
+      )}
+
       {loading && <StandSpinner />}
 
-      {hasError && <ErrorMessage message={errorMessage} />}
+      {deleteStatus.error && <ErrorMessage message={errorMessage} />}
     </>
   );
 };

@@ -5,6 +5,7 @@ import {
   QuillEditor,
   ErrorMessage,
   RelativeSpinner,
+  Header,
 } from "@/components/Layouts";
 import * as Styled from "./aboutUs.styled";
 import AboutUsHeader from "./components/AboutUsHeader";
@@ -14,6 +15,8 @@ const AboutUs: React.FC = () => {
 
   return (
     <Styled.AboutUs>
+      <Header />
+
       <AboutUsHeader />
 
       {!status.loading && !status.error && (

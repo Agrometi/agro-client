@@ -82,7 +82,7 @@ const ProductCard: React.FC<ProductCardT> = ({
 
         <LineClamp text={product.description} clamp={4} component="div" />
 
-        <div className="flex-box">
+        <div className="flex-box footer">
           <div className="flex-box__sub">
             <span>ფასი:</span>
             &nbsp;

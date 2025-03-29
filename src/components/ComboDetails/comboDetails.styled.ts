@@ -11,12 +11,14 @@ export const ComboDetails = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.gray};
     border-radius: 0.5rem;
     display: grid;
+    width: max-content;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 0.4rem;
+    margin: 0 auto;
 
     figure {
       width: 100%;
-      height: 20rem;
+      height: 30rem;
       overflow: hidden;
       border-radius: 0.5rem;
       cursor: ne-resize;
@@ -25,7 +27,7 @@ export const ComboDetails = styled.div`
     figure img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -147,7 +149,7 @@ export const ComboDetails = styled.div`
     pointer-events: none;
     transition: all 0.3s 0.15s ease;
 
-    h4[data-line-clamp] {
+    h3[data-line-clamp] {
       font-weight: 600;
       text-align: center;
     }

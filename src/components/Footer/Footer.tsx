@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         referrerPolicy="no-referrer"
         target="_blank"
       >
-        <img src="/assets/ibiard.jpeg" alt="იბიარდი" height={30} />
+        <img src="/assets/ibiard.jpeg" alt="იბიარდი" height={30} width={48} />
       </a>
     </Styled.Footer>
   );

@@ -1,6 +1,5 @@
 const PATHS = {
-  root_page: "/",
-  home_page: "/home",
+  home_page: "/",
 
   // ================================ //
   // ========== PRODUCT ↓ ========== //

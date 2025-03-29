@@ -7,14 +7,21 @@ const AboutUsHeader: React.FC<AboutUsHeaderT> = () => {
     <Styled.AboutUsHeader>
       <figure className="header-bg">
         <img
-          src="https://images.unsplash.com/photo-1592128546260-978059b0f6af?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
+          width="100%"
+          height="100%"
+          alt="ნიადაგის ამსახველი ფოტო"
+          src="/assets/ground.webp"
         />
       </figure>
 
       <div className="shopping__header-body">
         <figure>
-          <img src="/assets/logo-geo.webp" alt="agrometi" width={300} />
+          <img
+            src="/assets/logo-geo.webp"
+            alt="agrometi"
+            width={300}
+            height={82}
+          />
         </figure>
       </div>
     </Styled.AboutUsHeader>

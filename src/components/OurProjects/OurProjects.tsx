@@ -1,10 +1,11 @@
 import { useGetAllArticlesQuery } from "@/hooks/api/blog";
 
 import {
-  InfiniteScroll,
+  Header,
   ArticleCard,
   ErrorMessage,
   EmptyMessage,
+  InfiniteScroll,
   RelativeSpinner,
 } from "@/components/Layouts";
 
@@ -16,6 +17,8 @@ const OurProjects: React.FC = () => {
 
   return (
     <Styled.OurProjects>
+      <Header />
+
       <div className="articles-list">
         {status.status === "SUCCESS" && (
           <InfiniteScroll
